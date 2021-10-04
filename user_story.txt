@@ -1,0 +1,9 @@
+User story: 
+
+The software should be able to read any Syllabus file
+such as .docx and .pdf and recognize the dates for every
+single assignment.
+
+I would like the software to read syllabi, recognize their
+dates and show the assignments due dates and exams to have 
+clearer organization of all my classes. - Mariano
