@@ -31,27 +31,23 @@ class Reader:
 
     def recognize_fields(self, df):
         """
-        Accepts a dataframe and returns a list of
-        weeks, dates, and assignments in their order.
+        Accepts a dataframe and returns 
+        the a dataframe only with the fields
+        "Assignments", "Week", and "Date".
         """
-        dates = None
-        assignments = None
         if isinstance(df, pd.DataFrame):
-            weeks = None
-            dates = None
-            assignments = None
             if "Assignments" in list(df) or "Week" in list(df) or "Date" in list(df):
-                weeks = df["Week"].to_list()
-                dates = df["Date"].to_list()
-                assignments = df["Assignments"].to_list()
-        if not dates:
-            return None
-        return [weeks, dates, assignments]
+                df = df[["Assignments","Week","Date"]]
+            else:
+                return pd.DataFrame()
+        return df
         
-    def read_docx_table(self, document, table_num=1, n_headers=1):
+    def read_docx_table(self, document, n_headers=1):
         """
-        Reads a document (docx Document) and returns a nested 
-        list with dates and assignments as lists inside. 
+        Reads a document's tables (docx Document) and returns 
+        a list with dataframes that represent the calendar
+        in the syllabus. If the syllabus doesn't contain 
+        any table with the format, it returns None. 
         """
         tables = document.tables
         if not tables:
@@ -75,16 +71,17 @@ class Reader:
                 df = pd.DataFrame()
             
             table_data = self.recognize_fields(df)
-            if table_data:  
+            if not table_data.empty:  
                 tables_data.append(table_data)
         return tables_data
 
     def load_dates(self, directory=None):
         """
-        Accepts a directory and read_docx_table for each
-        single docx file in the directory. At the ends sets
-        the sum of the return values of the function as the 
-        object table.
+        Accepts a directory and reads their tables
+        with the calendar information for each
+        single docx file in the directory.
+        At the ends it sets the dataframes as the
+        object dates.
         """
         if directory != None:
             self.set_directory(directory)
@@ -101,10 +98,9 @@ def main():
     reader = Reader(sys.argv[1])
 
     reader.load_dates()
-    dates = reader.get_dates()
-    print(dates)
-    # for df in dfs:
-    #     print(f"{df}: \n {dfs[df]}")
+    dfs = reader.get_dates()
+    for df in dfs:
+        print(f"{df}: \n {dfs[df]}")
 
 if __name__ == "__main__":
     main()
