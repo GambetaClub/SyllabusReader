@@ -64,6 +64,7 @@ class Reader:
             else:
                 df = syllabi[syllabus]
                 for i, s in enumerate(df["Assignments"]):
+                    print(f"Assignment:\n{s}")
                     if not s.isalnum():
                         df["Assignments"][i] = None
 
