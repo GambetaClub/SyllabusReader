@@ -1,12 +1,14 @@
 import sys
 import os
+import string
+import dateutil.parser
 import pandas as pd
 from docx import Document
 
 class Reader:
-    def __init__(self, directory, dates=None, calendar=None):
+    def __init__(self, directory, syllabi=None, calendar=None):
         self.__directory = directory
-        self.__dates = dates
+        self.__syllabi = syllabi
         self.__calendar = calendar
 
     def set_directory(self, directory):
@@ -20,19 +22,61 @@ class Reader:
     def get_filenames(self):
         return [key for key in self.__tables.keys()]
 
-    def set_dates(self, dates):
-        self.__dates = dates
+    def set_syllabi(self, syllabi):
+        self.__syllabi = syllabi
 
-    def get_dates(self):
-        return self.__dates
+    def get_syllabi(self):
+        return self.__syllabi
 
     def get_calendar(self):
         return self.__calendar
 
+    def convert_dates(self):
+        """
+        Convert the dates of the syllabi's
+        dataframes into a monotonous format
+        and sets the new dictionary for the 
+        object attribute.
+        """
+        syllabi = self.get_syllabi()
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            if syllabi[syllabus] is None:
+                continue
+            else:
+                df = syllabi[syllabus]
+                for i, date in enumerate(df["Date"]):
+                    try:
+                        df["Date"][i] = dateutil.parser.parse(date)
+                    except Exception:
+                        df["Date"][i] = None
+
+                df = df[df.Date.notnull()]
+                new_syllabi[syllabus] = df
+        self.set_syllabi(new_syllabi)
+
+    def convert_assignments(self):
+        syllabi = self.get_syllabi()
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            if syllabi[syllabus] is None:
+                continue
+            else:
+                df = syllabi[syllabus]
+                for i, s in enumerate(df["Assignments"]):
+                    print(f"Assignment:\n{s}")
+                    if not s.isalnum():
+                        df["Assignments"][i] = None
+
+                df = df[df.Assignments.notnull()]
+                new_syllabi[syllabus] = df
+
+        self.set_syllabi(new_syllabi)       
+
     def recognize_fields(self, df):
         """
         Accepts a dataframe and returns 
-        the a dataframe only with the fields
+        the dataframe only with the fields
         "Assignments", "Week", and "Date".
         """
         if isinstance(df, pd.DataFrame):
@@ -53,7 +97,7 @@ class Reader:
         if not tables:
             return None
 
-        tables_data = list()
+        dfs = list()
         for table in tables:
             data = [[cell.text for cell in row.cells] for row in table.rows]
             df = pd.DataFrame(data)
@@ -70,37 +114,39 @@ class Reader:
                 print("More than two headers not currently supported")
                 df = pd.DataFrame()
             
-            table_data = self.recognize_fields(df)
-            if not table_data.empty:  
-                tables_data.append(table_data)
-        return tables_data
+            df = self.recognize_fields(df)
+            if not df.empty:  
+                dfs.append(df)
+        if not dfs:
+            return None
+        return dfs[0]
 
-    def load_dates(self, directory=None):
+    def load_syllabi(self, directory=None):
         """
         Accepts a directory and reads their tables
         with the calendar information for each
         single docx file in the directory.
-        At the ends it sets the dataframes as the
-        object dates.
+        At the end it sets the dataframes as the
+        object syllabi.
         """
         if directory != None:
             self.set_directory(directory)
-        dates = dict()
+        syllabi = dict()
         for filename in os.listdir(self.get_directory()):
             if filename.endswith(".docx"):
                 document = Document(os.path.join(sys.argv[1], filename))
-                dates[filename] = self.read_docx_table(document)
-        self.set_dates(dates)
+                syllabi[filename] = self.read_docx_table(document)
+        self.set_syllabi(syllabi)
+        self.convert_dates()
+        self.convert_assignments()
 
 def main():
     if len(sys.argv) != 2:
         sys.exit("Usage: python3 main.py <directory_name>")
     reader = Reader(sys.argv[1])
 
-    reader.load_dates()
-    dfs = reader.get_dates()
-    for df in dfs:
-        print(f"{df}: \n {dfs[df]}")
+    reader.load_syllabi()
+    print(reader.get_syllabi())
 
 if __name__ == "__main__":
     main()
