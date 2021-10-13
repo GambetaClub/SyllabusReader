@@ -1,6 +1,7 @@
 import sys
 import os
-import string
+import re
+import pathlib
 import dateutil.parser
 import pandas as pd
 from docx import Document
@@ -31,6 +32,17 @@ class Reader:
     def get_calendar(self):
         return self.__calendar
 
+    def spec(self, s):
+        """
+        Takes a string. Returns False is the string is
+        made by more than just special characters.
+        Otherwise, it returns True.
+        """
+        if not re.match(r'^[_\W]+$', s):
+            return True
+        else:
+            return False
+
     def convert_dates(self):
         """
         Convert the dates of the syllabi's
@@ -48,7 +60,7 @@ class Reader:
                 for i, date in enumerate(df["Date"]):
                     try:
                         df["Date"][i] = dateutil.parser.parse(date)
-                    except Exception:
+                    except:
                         df["Date"][i] = None
 
                 df = df[df.Date.notnull()]
@@ -64,9 +76,8 @@ class Reader:
             else:
                 df = syllabi[syllabus]
                 for i, s in enumerate(df["Assignments"]):
-                    print(f"Assignment:\n{s}")
-                    if not s.isalnum():
-                        df["Assignments"][i] = None
+                    if not self.spec(s):
+                        df.loc["Assignments", i] = None
 
                 df = df[df.Assignments.notnull()]
                 new_syllabi[syllabus] = df
@@ -105,15 +116,6 @@ class Reader:
             if n_headers == 1:
                 df = df.rename(columns=df.iloc [0]).drop (df.index [0]).reset_index(drop=True)
             
-            elif n_headers == 2:
-                outside_col, inside_col = df.iloc[0], df.iloc [1]
-                hier_index = pd.MultiIndex.from_tuples(list (zip(outside_col, inside_col)))
-                df = pd.DataFrame(data, columns=hier_index).drop(df.index[[0,1]]).reset_index(drop=True)
-        
-            elif n_headers > 2:
-                print("More than two headers not currently supported")
-                df = pd.DataFrame()
-            
             df = self.recognize_fields(df)
             if not df.empty:  
                 dfs.append(df)
@@ -135,7 +137,7 @@ class Reader:
         for filename in os.listdir(self.get_directory()):
             if filename.endswith(".docx"):
                 document = Document(os.path.join(sys.argv[1], filename))
-                syllabi[filename] = self.read_docx_table(document)
+                syllabi[os.path.splitext(filename)[0]] = self.read_docx_table(document)
         self.set_syllabi(syllabi)
         self.convert_dates()
         self.convert_assignments()
@@ -146,7 +148,9 @@ def main():
     reader = Reader(sys.argv[1])
 
     reader.load_syllabi()
-    print(reader.get_syllabi())
+    syllabi = reader.get_syllabi()
+    for syllabus in syllabi:
+        syllabi[syllabus].to_csv(f"{syllabus}.csv")
 
 if __name__ == "__main__":
-    main()
+    main()  
