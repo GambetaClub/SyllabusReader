@@ -1,4 +1,3 @@
-pandas
-docx2txt
-python-docx2
-python-dateutil
+docx==0.2.4
+pandas==1.3.3
+python_dateutil==2.8.2
