@@ -1,1 +1,4 @@
+pandas
 docx2txt
+python-docx2
+python-dateutil
