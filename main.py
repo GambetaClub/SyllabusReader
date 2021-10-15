@@ -6,6 +6,7 @@ import dateutil.parser
 import pandas as pd
 from docx import Document
 
+# Changing something...
 class Reader:
     def __init__(self, directory, syllabi=None, calendar=None):
         self.__directory = directory
