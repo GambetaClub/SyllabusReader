@@ -32,6 +32,15 @@ class Reader:
     def get_calendar(self):
         return self.__calendar
 
+    def add_fields(self):
+        """
+        """
+        syllabi = self.get_syllabi
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            df = syllabi[syllabus]
+
+
     def spec(self, s):
         """
         Takes a string. Returns False is the string is
@@ -75,11 +84,8 @@ class Reader:
                 continue
             else:
                 df = syllabi[syllabus]
-                for i, s in enumerate(df["Assignments"]):
-                    if not self.spec(s):
-                        df.loc["Assignments", i] = None
-
-                df = df[df.Assignments.notnull()]
+                df.loc[df["Assignments"] == "", "Assignments"] = 1
+                # df = df[df.Assignments.notnull()]
                 new_syllabi[syllabus] = df
 
         self.set_syllabi(new_syllabi)       
@@ -92,7 +98,7 @@ class Reader:
         """
         if isinstance(df, pd.DataFrame):
             if "Assignments" in list(df) or "Week" in list(df) or "Date" in list(df):
-                df = df[["Assignments","Week","Date"]]
+                df = df[["Assignments","Date"]]
             else:
                 return pd.DataFrame()
         return df
@@ -150,7 +156,7 @@ def main():
     reader.load_syllabi()
     syllabi = reader.get_syllabi()
     for syllabus in syllabi:
-        syllabi[syllabus].to_csv(f"{syllabus}.csv")
+        syllabi[syllabus].to_csv(f"{syllabus}.csv", index=False)
 
 if __name__ == "__main__":
     main()  
