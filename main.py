@@ -6,7 +6,6 @@ import dateutil.parser
 import pandas as pd
 from docx import Document
 
-# Changing something...
 class Reader:
     def __init__(self, directory, syllabi=None, calendar=None):
         self.__directory = directory
@@ -32,15 +31,6 @@ class Reader:
 
     def get_calendar(self):
         return self.__calendar
-
-    def add_fields(self):
-        """
-        """
-        syllabi = self.get_syllabi
-        new_syllabi = dict()
-        for syllabus in syllabi:
-            df = syllabi[syllabus]
-
 
     def spec(self, s):
         """
@@ -85,8 +75,11 @@ class Reader:
                 continue
             else:
                 df = syllabi[syllabus]
-                df.loc[df["Assignments"] == "", "Assignments"] = 1
-                # df = df[df.Assignments.notnull()]
+                for i, s in enumerate(df["Assignments"]):
+                    if not self.spec(s):
+                        df.loc["Assignments", i] = None
+
+                df = df[df.Assignments.notnull()]
                 new_syllabi[syllabus] = df
 
         self.set_syllabi(new_syllabi)       
@@ -99,7 +92,7 @@ class Reader:
         """
         if isinstance(df, pd.DataFrame):
             if "Assignments" in list(df) or "Week" in list(df) or "Date" in list(df):
-                df = df[["Assignments","Date"]]
+                df = df[["Assignments","Week","Date"]]
             else:
                 return pd.DataFrame()
         return df
@@ -157,7 +150,7 @@ def main():
     reader.load_syllabi()
     syllabi = reader.get_syllabi()
     for syllabus in syllabi:
-        syllabi[syllabus].to_csv(f"{syllabus}.csv", index=False)
+        syllabi[syllabus].to_csv(f"{syllabus}.csv")
 
 if __name__ == "__main__":
     main()  
