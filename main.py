@@ -165,7 +165,7 @@ def main():
     reader.load_syllabi()
     syllabi = reader.get_syllabi()
     for syllabus in syllabi:
-        syllabi[syllabus].to_csv(f"{syllabus}.csv")
+        syllabi[syllabus].to_csv(f"{syllabus}.csv", index=False)
 
 if __name__ == "__main__":
     main()  
