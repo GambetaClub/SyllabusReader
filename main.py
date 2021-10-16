@@ -43,6 +43,16 @@ class Reader:
         else:
             return False
 
+    def delete_empty_rows(self):
+        syllabi = self.get_syllabi()
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            if syllabi[syllabus] is None:
+                continue
+            else:
+                df = syllabi[syllabus]
+                df[~df["Assignments"].isin([None, ""])]
+
     def convert_dates(self):
         """
         Convert the dates of the syllabi's
@@ -68,6 +78,11 @@ class Reader:
         self.set_syllabi(new_syllabi)
 
     def convert_assignments(self):
+        """
+        Converts the dataframe assignments 
+        values to None if the value is either
+        only spaces or symbol characters. 
+        """
         syllabi = self.get_syllabi()
         new_syllabi = dict()
         for syllabus in syllabi:
@@ -103,7 +118,7 @@ class Reader:
         a list with dataframes that represent the calendar
         in the syllabus. If the syllabus doesn't contain 
         any table with the format, it returns None. 
-        """
+        """ 
         tables = document.tables
         if not tables:
             return None
@@ -150,7 +165,7 @@ def main():
     reader.load_syllabi()
     syllabi = reader.get_syllabi()
     for syllabus in syllabi:
-        syllabi[syllabus].to_csv(f"{syllabus}.csv")
+        syllabi[syllabus].to_csv(f"{syllabus}.csv", index=False)
 
 if __name__ == "__main__":
     main()  
