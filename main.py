@@ -43,6 +43,16 @@ class Reader:
         else:
             return False
 
+    def delete_empty_rows(self):
+        syllabi = self.get_syllabi()
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            if syllabi[syllabus] is None:
+                continue
+            else:
+                df = syllabi[syllabus]
+                df[~df["Assignments"].isin([None, ""])]
+
     def convert_dates(self):
         """
         Convert the dates of the syllabi's
@@ -68,6 +78,11 @@ class Reader:
         self.set_syllabi(new_syllabi)
 
     def convert_assignments(self):
+        """
+        Converts the dataframe assignments 
+        values to None if the value is either
+        only spaces or symbol characters. 
+        """
         syllabi = self.get_syllabi()
         new_syllabi = dict()
         for syllabus in syllabi:
