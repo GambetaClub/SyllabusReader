@@ -38,20 +38,21 @@ class Reader:
         made by more than just special characters.
         Otherwise, it returns True.
         """
-        if not re.match(r'^[_\W]+$', s):
-            return True
+        if not re.match(r'^[_\W]+$', s) and s != "":
+            return s
         else:
-            return False
+            return None
 
-    def delete_empty_rows(self):
-        syllabi = self.get_syllabi()
-        new_syllabi = dict()
-        for syllabus in syllabi:
-            if syllabi[syllabus] is None:
-                continue
-            else:
-                df = syllabi[syllabus]
-                df[~df["Assignments"].isin([None, ""])]
+    def convert_assignments(self,df):
+        """
+        Converts the dataframe assignments 
+        values to None if the value is either
+        only spaces or symbol characters. 
+        """
+
+        df['Assignments'] = df['Assignments'].map(lambda s: self.spec(s))
+        df = df[df.Assignments.notnull()]
+        return df
 
     def convert_dates(self):
         """
@@ -75,29 +76,7 @@ class Reader:
 
                 df = df[df.Date.notnull()]
                 new_syllabi[syllabus] = df
-        self.set_syllabi(new_syllabi)
-
-    def convert_assignments(self):
-        """
-        Converts the dataframe assignments 
-        values to None if the value is either
-        only spaces or symbol characters. 
-        """
-        syllabi = self.get_syllabi()
-        new_syllabi = dict()
-        for syllabus in syllabi:
-            if syllabi[syllabus] is None:
-                continue
-            else:
-                df = syllabi[syllabus]
-                for i, s in enumerate(df["Assignments"]):
-                    if not self.spec(s):
-                        df.loc["Assignments", i] = None
-
-                df = df[df.Assignments.notnull()]
-                new_syllabi[syllabus] = df
-
-        self.set_syllabi(new_syllabi)       
+        self.set_syllabi(new_syllabi)    
 
     def recognize_fields(self, df):
         """
@@ -155,7 +134,13 @@ class Reader:
                 syllabi[os.path.splitext(filename)[0]] = self.read_docx_table(document)
         self.set_syllabi(syllabi)
         self.convert_dates()
-        self.convert_assignments()
+
+        syllabi = self.get_syllabi()
+        for syllabus in syllabi:
+            df = syllabi[syllabus]
+            df = self.convert_assignments(df)
+            syllabi[syllabus] = df
+        self.set_syllabi(syllabi)
 
 def main():
     if len(sys.argv) != 2:
