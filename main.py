@@ -103,7 +103,7 @@ class Reader:
         a list with dataframes that represent the calendar
         in the syllabus. If the syllabus doesn't contain 
         any table with the format, it returns None. 
-        """
+        """ 
         tables = document.tables
         if not tables:
             return None
