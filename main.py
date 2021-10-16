@@ -1,5 +1,9 @@
+from pdf2txt import pdf2txt
 def main():
-    print("Hello world! This is Kyler and Chris and Mariano. kyler")
+    #main
+    inPDFfile = 'syllabus1.pdf'
+    outTXTFile = 'syllabus1.txt'
+    pdf2txt(inPDFfile, outTXTFile)
 
 if __name__ == "__main__":
     main()
