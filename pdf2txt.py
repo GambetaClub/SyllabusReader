@@ -9,7 +9,7 @@ def pdf2txt(inPDFfile, outTXTFile):
     retData = io.StringIO()
     TxtConverter = TextConverter(resMgr, retData, laparams=LAParams())
     interpreter = PDFPageInterpreter(resMgr, TxtConverter)
-    
+
     #process each page in pdf file
     for page in PDFPage.get_pages(inFile):
         interpreter.process_page(page)
