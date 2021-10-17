@@ -6,6 +6,8 @@ import dateutil.parser
 import pandas as pd
 from docx import Document
 
+from ICSConverter import ICSConverter
+
 class Reader:
     def __init__(self, directory, syllabi=None, calendar=None):
         self.__directory = directory
@@ -151,6 +153,13 @@ def main():
     syllabi = reader.get_syllabi()
     for syllabus in syllabi:
         syllabi[syllabus].to_csv(f"{syllabus}.csv")
+
+    converter = ICSConverter(sys.argv[1])
+
+    converter.readCSV(f"Syllabus1.csv")
+    converter.readCSV(f"Syllabus2.csv")
+
+    converter.exportICS()
 
 if __name__ == "__main__":
     main()  
