@@ -5,6 +5,7 @@ import pathlib
 from datefinder import find_dates
 import dateutil.parser
 import pandas as pd
+import itertools
 from docx import Document
 from pdf2txt import pdf2txt
 from pdfDateFinder import findDates
@@ -174,9 +175,11 @@ def main():
     outTXTFile = 'syllabus1.txt'
     pdf2txt(inPDFfile, outTXTFile)
 
-    dates = findDates("syllabus1.txt")
-    for date in dates:
-        print(date)
+    findDatesTuple = findDates("syllabus1.txt")
+    dates = findDatesTuple[0]
+    lines = findDatesTuple[1]
+    for date, line in zip(dates, lines):
+        print(line, date)
 
 if __name__ == "__main__":
     main()  
