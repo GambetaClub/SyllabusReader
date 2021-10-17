@@ -1,3 +1,4 @@
 *.xlsx
 *.csv
-*.cpython-39
+*.pyc
+*.txt

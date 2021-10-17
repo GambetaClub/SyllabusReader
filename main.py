@@ -2,9 +2,13 @@ import sys
 import os
 import re
 import pathlib
+from datefinder import find_dates
 import dateutil.parser
 import pandas as pd
+import itertools
 from docx import Document
+from pdf2txt import pdf2txt
+from pdfDateFinder import findDates
 
 from ICSConverter import ICSConverter
 
@@ -175,6 +179,16 @@ def main():
     converter.readCSV(f"Syllabus2.csv")
 
     converter.exportICS()
+    
+    inPDFfile = 'syllabus1.pdf'
+    outTXTFile = 'syllabus1.txt'
+    pdf2txt(inPDFfile, outTXTFile)
+
+    findDatesTuple = findDates("syllabus1.txt")
+    dates = findDatesTuple[0]
+    lines = findDatesTuple[1]
+    for date, line in zip(dates, lines):
+        print(line, date)
 
 if __name__ == "__main__":
     main()  
