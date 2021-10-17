@@ -1,11 +1,13 @@
-from pdf2txt import pdf2txt
 import sys
 import os
 import re
 import pathlib
+from datefinder import find_dates
 import dateutil.parser
 import pandas as pd
 from docx import Document
+from pdf2txt import pdf2txt
+from pdfDateFinder import findDates
 
 class Reader:
     def __init__(self, directory, syllabi=None, calendar=None):
@@ -171,6 +173,10 @@ def main():
     inPDFfile = 'syllabus1.pdf'
     outTXTFile = 'syllabus1.txt'
     pdf2txt(inPDFfile, outTXTFile)
+
+    dates = findDates("syllabus1.txt")
+    for date in dates:
+        print(date)
 
 if __name__ == "__main__":
     main()  
