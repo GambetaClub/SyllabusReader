@@ -158,9 +158,6 @@ class Reader:
         self.convert_assignments()
 
 def main():
-<<<<<<< HEAD
-    print("Hello world! This is Kyler and Chris and Mariano. Chris")
-=======
     if len(sys.argv) != 2:
         sys.exit("Usage: python3 main.py <directory_name>")
     reader = Reader(sys.argv[1])
@@ -169,7 +166,6 @@ def main():
     syllabi = reader.get_syllabi()
     for syllabus in syllabi:
         syllabi[syllabus].to_csv(f"{syllabus}.csv", index=False)
->>>>>>> a1c55e362ff9ba3d240096c6ed98a7ecad2c239d
 
 if __name__ == "__main__":
     main()  
