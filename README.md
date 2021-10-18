@@ -28,5 +28,6 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 * `python3 main.py <dir_with_syll>`
 
 ### Output
-* The current output of the program are .csv files represeting the calendar in rows, in order for you to make changes if desired. 
+* The current output of the program is an ics file "test.ics" inside the directory you created. You can export this file to your calendar of choice.
+* Examples would be [Google Calendar](https://calendar.google.com/) or [ICalendar](https://www.icloud.com/calendar).
 
