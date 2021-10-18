@@ -6,13 +6,13 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 
 ## Usage
 ### Install Python
-*This can be done through your device's webstore, or from the Python website, or even through the terminal by typing "python"
+-This can be done through your device's webstore, or from the Python website, or even through the terminal by typing "python"
 
 ### Install Pip
-*Once you have Python installed, the next step is to install pip. To do this, run the command "python3 get-pip.py" in the terminal.
+-Once you have Python installed, the next step is to install pip. To do this, run the command "python3 get-pip.py" in the terminal.
 
 ### Download our files from GitHub
-*This can be done either by downloading zip, or by cloning the Git repository.
+-This can be done either by downloading zip, or by cloning the Git repository.
 
 ### Install "requirements.txt"
-*Once you have all the previous files installed, run the command "pip3 install -r requirements.txt"
+-Once you have all the previous files installed, run the command "pip3 install -r requirements.txt"
