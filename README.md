@@ -7,13 +7,13 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 ## Usage
 ### Install Python
 * This can be done through your device's webstore, or from the [Python website](https://www.python.org/downloads/), or even through the terminal by typing "python".
-* We recommend using Python3 to run commands
+* We recommend using Python3 to run commands.
 
 ### Install Pip
-* Once you have Python installed, the next step is to install [pip](https://pypi.org/project/pip/). pip is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes. To do this, run the command "python3 get-pip.py" in the terminal.
+* Once you have Python installed, the next step is to install [pip](https://pypi.org/project/pip/). pip is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes. To do this, run the command """python3 get-pip.py""" in the terminal.
 
 ### Download our files from GitHub
 * This can be done either by downloading zip, or by cloning the [Git repository](https://github.com/GambetaClub/SyllabusReader).
 
 ### Install "requirements.txt"
-* Once you have all the previous files installed, run the command "pip3 install -r requirements.txt"
+* Once you have all the previous files installed, run the command """pip3 install -r requirements.txt"""
