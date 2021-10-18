@@ -29,5 +29,5 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 
 ### Output
 * The current output of the program is an ics file "test.ics" inside the directory you created. You can export this file to your calendar of 
-* preference such as "Google Calendar" or "ICalendar".
+* preference such as [Google Calendar](https://calendar.google.com/) or [ICalendar](https://www.icloud.com/calendar).
 
