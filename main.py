@@ -2,7 +2,7 @@ import sys
 from pdf_date_finder import PDFDateFinder
 
 from ics_converter import ICSConverter
-from reader import Reader
+from Reader import Reader
 
 def main():
     if len(sys.argv) != 2:
