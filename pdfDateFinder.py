@@ -28,6 +28,8 @@ def findDates(fileName):
             for match in matches:
                 dates.append(match)
                 lines.append(word)
-        else:
-            print("There was no date in that line.")
+                break
+            
+        #else:
+            #print("There was no date in that line.")
     return dates, lines
