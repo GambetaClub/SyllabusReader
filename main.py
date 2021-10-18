@@ -1,7 +1,7 @@
 import sys
 
 from ics_converter import ICSConverter
-from Reader import Reader
+from reader import Reader
 
 def main():
     if len(sys.argv) != 2:
@@ -18,7 +18,7 @@ def main():
     for syllabus in syllabi:
         syllabi[syllabus].to_csv(f"{syllabus}.csv", index=False)
         converter.readCSV(f"{syllabus}.csv")
-
+    
     converter.exportICS()
 
 if __name__ == "__main__":
