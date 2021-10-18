@@ -4,9 +4,12 @@ from ics_converter import ICSConverter
 from Reader import Reader
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         sys.exit("Usage: python3 main.py <directory_name>")
     
+    if len(sys.argv) == 2:
+        if sys.argv[1].lower() == "true" or sys.argv[1].lower() == "true":
+            print("eso")
     #reading docx file
     reader = Reader(sys.argv[1])
 
