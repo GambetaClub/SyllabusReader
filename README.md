@@ -7,3 +7,10 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 ## Usage
 ### Install Python
 Blah blah
+
+### Install Pip
+Blah blh
+
+### Download our files from GitHub
+
+### Install "requirements.txt"
