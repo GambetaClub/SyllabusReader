@@ -1,7 +1,7 @@
 import sys
 
 from ics_converter import ICSConverter
-from Reader import Reader
+from reader import Reader
 
 def main():
     if len(sys.argv) < 2:
