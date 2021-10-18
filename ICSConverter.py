@@ -1,8 +1,6 @@
 import os
 import csv
 import re
-from sys import version
-import pytz
 from icalendar import Calendar, Event
 from datetime import datetime
 from pathlib import Path
@@ -13,6 +11,7 @@ class ICSConverter:
         self.__calendar.add("version", "2.0")
         self.__directory = directory
 
+    #reads the CSV file and adds events to the calendar
     def readCSV(self, file):
         with open(file, mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
@@ -27,8 +26,9 @@ class ICSConverter:
                     event['dtstart'] = date[0] + date[1] + date[2] + "T000000Z"
                     self.__calendar.add_component(event)
     
+    #uses calendar to create a ICS file
     def exportICS(self):
         directory = str(Path(__file__).parent.parent) + '/'
-        f = open(os.path.join(directory, 'test.ics'), 'wb')
+        f = open(os.path.join(self.__directory, 'test.ics'), 'wb')
         f.write(self.__calendar.to_ical())
         f.close()

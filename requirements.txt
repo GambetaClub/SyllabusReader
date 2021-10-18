@@ -3,4 +3,4 @@ pandas==1.3.3
 python_dateutil==2.8.2
 icalendar==4.0.9
 datefinder==0.7.1
-pdfminer==???
+pdfminer==20191125
