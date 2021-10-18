@@ -86,6 +86,7 @@ class Reader:
         values to None if the value is either
         only spaces or symbol characters. 
         """
+        pd.set_option('mode.chained_assignment', None) # Ignoring SettingWithCopyWarning
         df['Assignments'] = df['Assignments'].map(lambda s: self.spec(s))
         df = df[df.Assignments.notnull()]
         return df
