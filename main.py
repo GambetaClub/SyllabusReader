@@ -1,6 +1,5 @@
 import sys
-from pdf_2_txt import pdf2txt
-from pdf_date_finder import findDates
+from pdf_date_finder import PDFDateFinder
 
 from ics_converter import ICSConverter
 from reader import Reader
@@ -26,12 +25,10 @@ def main():
     converter.exportICS()
 
     #reading a pdf
-    inPDFfile = 'syllabus1.pdf'
-    outTXTFile = 'syllabus1.txt'
-    pdf2txt(inPDFfile, outTXTFile)
-    print("pdf to text finish")
-
-    findDatesTuple = findDates("syllabus1.txt")
+    pdf_date_finder = PDFDateFinder()
+    pdf_date_finder.pdf2txt('syllabus1.pdf', 'syllabus1.txt')
+    
+    findDatesTuple = pdf_date_finder.findDates("syllabus1.txt")
     print("find dates finished")
     dates = findDatesTuple[0]
     lines = findDatesTuple[1]
