@@ -1,9 +1,9 @@
 import sys
-from pdf2txt import pdf2txt
-from pdfDateFinder import findDates
+from pdf_2_txt import pdf2txt
+from pdf_date_finder import findDates
 
-from ICSConverter import ICSConverter
-from Reader import Reader
+from ics_converter import ICSConverter
+from reader import Reader
 
 def main():
     if len(sys.argv) != 2:
