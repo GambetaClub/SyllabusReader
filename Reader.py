@@ -31,64 +31,62 @@ class Reader:
     def get_calendar(self):
         return self.__calendar
 
-    def check_date(self, d):
-        """
-        Takes a string date and returns
-        the a stringuniform date format if
-        possible. Otherwise, it returns None 
-        """
-        try:
-            d = dateutil.parser.parse(d)
-            return d
-        except:
-            return None
-
     def spec(self, s):
         """
         Takes a string. Returns False is the string is
         made by more than just special characters.
         Otherwise, it returns True.
         """
-        if not re.match(r'^[_\W]+$', s) and s != "":
-            return s
+        if not re.match(r'^[_\W]+$', s):
+            return True
         else:
-            return None
+            return False
 
-    def check_syllabi(self):
-        """
-        Set the value of syllabi to be 
-        a dictionary of the valid of the 
-        documents with a valid format.
-        """
-        syllabi = self.get_syllabi()
-        new_syllabi = dict()
-        for key, value in syllabi.items():
-            if value is None:
-                continue
-            new_syllabi[key] = value
-        self.set_syllabi(new_syllabi)
-
-    def convert_dates(self, df):
+    def convert_dates(self):
         """
         Convert the dates of the syllabi's
         dataframes into a monotonous format
         and sets the new dictionary for the 
         object attribute.
         """
-        df['Date'] = df['Date'].map(lambda d: self.check_date(d))
-        df = df[df.Date.notnull()]
-        return df 
+        syllabi = self.get_syllabi()
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            if syllabi[syllabus] is None:
+                continue
+            else:
+                df = syllabi[syllabus]
+                for i, date in enumerate(df["Date"]):
+                    try:
+                        df["Date"][i] = dateutil.parser.parse(date)
+                    except:
+                        df["Date"][i] = None
 
-    def convert_assignments(self,df):
+                df = df[df.Date.notnull()]
+                new_syllabi[syllabus] = df
+        self.set_syllabi(new_syllabi)
+
+    def convert_assignments(self):
         """
         Converts the dataframe assignments 
         values to None if the value is either
         only spaces or symbol characters. 
         """
-        with pd.option_context('mode.chained_assignment',None):
-            df['Assignments'] = df['Assignments'].map(lambda s: self.spec(s))
-            df = df[df.Assignments.notnull()]
-            return df
+        syllabi = self.get_syllabi()
+        new_syllabi = dict()
+        for syllabus in syllabi:
+            if syllabi[syllabus] is None:
+                continue
+            else:
+                df = syllabi[syllabus]
+                for i, s in enumerate(df["Assignments"]):
+                    if not self.spec(s):
+                        df.loc["Assignments", i] = None
+
+                df = df[df.Assignments.notnull()]
+                new_syllabi[syllabus] = df
+
+        self.set_syllabi(new_syllabi)       
 
     def recognize_fields(self, df):
         """
@@ -145,13 +143,5 @@ class Reader:
                 document = Document(os.path.join(sys.argv[1], filename))
                 syllabi[os.path.splitext(filename)[0]] = self.read_docx_table(document)
         self.set_syllabi(syllabi)
-        self.check_syllabi()
-
-        syllabi = self.get_syllabi()
-        for syllabus in syllabi:
-            df = syllabi[syllabus]
-            df = self.convert_dates(df)
-            df = self.convert_assignments(df)
-            syllabi[syllabus] = df
-        
-        self.set_syllabi(syllabi)
+        self.convert_dates()
+        self.convert_assignments()
