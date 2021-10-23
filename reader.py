@@ -1,20 +1,18 @@
-import sys
 import os
 import re
+from ics_converter import ICSConverter
 import pathlib
 import dateutil.parser
 import pandas as pd
 from docx import Document
 
 class Reader:
-    def __init__(self, directory, syllabi=None, calendar=None):
+    def __init__(self, directory=None, syllabi=None, calendar=None):
         self.__directory = directory
         self.__syllabi = syllabi
         self.__calendar = calendar
 
     def set_directory(self, directory):
-        if not isinstance(self.__directory, str):
-            raise TypeError("Directory must be a str")
         self.__directory = directory
 
     def get_directory(self):
@@ -141,9 +139,10 @@ class Reader:
         if directory != None:
             self.set_directory(directory)
         syllabi = dict()
-        for filename in os.listdir(self.get_directory()):
+        dir_name = self.get_directory()
+        for filename in os.listdir(dir_name):
             if filename.endswith(".docx"):
-                document = Document(os.path.join(sys.argv[1], filename))
+                document = Document(os.path.join(dir_name, filename))
                 syllabi[os.path.splitext(filename)[0]] = self.read_docx_table(document)
         self.set_syllabi(syllabi)
         self.check_syllabi()
@@ -155,3 +154,61 @@ class Reader:
             df = self.convert_assignments(df)
             syllabi[syllabus] = df
         self.set_syllabi(syllabi)
+
+    def get_files_dir(self, args):
+        files_dir = pathlib.Path().resolve()
+        if len(args) == 2:
+            files_dir = os.path.join(files_dir, args[1])
+        else:
+            print("What's the directory's name in which the csv files are?")
+            print("Press enter if it's in the current directory.")
+            dir_name = input()
+            files_dir = os.path.join(files_dir, dir_name)
+        return files_dir
+
+    def convert_docx_to_cvs(self, files_dir):
+        reader = Reader()
+        reader.set_directory(files_dir)
+        reader.load_syllabi()
+        syllabi = reader.get_syllabi()
+        for syllabus in syllabi:
+            syllabi[syllabus].to_csv(f"{syllabus}.csv", encoding='utf-8', index=False)
+
+    def convert_csv_to_ics(self, files_dir):
+        converter = ICSConverter(files_dir)
+        csv_filenames = [filename for filename in os.listdir(files_dir) if filename.endswith('.csv')]
+        if csv_filenames:
+            for filename in csv_filenames:
+                converter.readCSV(f"{filename}")
+                converter.exportICS()
+        else:
+            print("There are no csv files in the listed directory.")
+            return False
+
+    def display_interface(self, args):
+        print("Options:")
+        print(f"1: Convert docx to csv format.")
+        print(f"2: Convert csv to ics format.")
+        print(f"3: Convert docx to ics format.")
+        option = input()
+        files_dir = self.get_files_dir(args)
+        
+        if option == '1':
+            try:
+                self.convert_docx_to_cvs(files_dir)
+                print("The docx files were converted to csv successfully.")
+            except:
+                print("The docx files could not be converted to csv.")
+        elif option == '2':
+            try:
+                self.convert_csv_to_ics(files_dir)
+            except:
+                print("The csv files could not be converted to ics.")
+        elif option == '3':
+            try:
+                self.convert_csv_to_ics(files_dir)
+                self.convert_docx_to_cvs(files_dir)
+            except: 
+                print("Failed in doing both.")
+        else:
+            print("Invalid option")
