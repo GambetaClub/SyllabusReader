@@ -28,6 +28,6 @@ class ICSConverter:
     
     #uses calendar to create a ICS file
     def exportICS(self):
-        f = open(os.path.join(self.__directory, 'test.ics'), 'wb')
+        f = open(os.path.join(self.__directory, 'calendar.ics'), 'wb')
         f.write(self.__calendar.to_ical())
         f.close()

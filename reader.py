@@ -156,9 +156,16 @@ class Reader:
         self.set_syllabi(syllabi)
 
     def get_files_dir(self, args):
-        files_dir = pathlib.Path().resolve()
+        """
+        Interface helper function that resolves the problem 
+        of getting the directory name in which they 
+        files (docx or csv) are in.
+        """
+        files_dir = os.getcwd()
+        # If the directory was passed as an argument then it resolves
         if len(args) == 2:
             files_dir = os.path.join(files_dir, args[1])
+        # If not, then it asks for the user to type the name
         else:
             print("What's the directory's name in which the csv files are?")
             print("Press enter if it's in the current directory.")
@@ -166,21 +173,41 @@ class Reader:
             files_dir = os.path.join(files_dir, dir_name)
         return files_dir
 
-    def convert_docx_to_cvs(self, files_dir):
-        reader = Reader()
-        reader.set_directory(files_dir)
-        reader.load_syllabi()
-        syllabi = reader.get_syllabi()
+    def convert_docx_to_csv(self, files_dir):
+        # Setting the docx directory
+        self.set_directory(files_dir)
+        
+        # Transforming docx tables to dataframes
+        self.load_syllabi()
+        
+        # Getting the dataframes stored in the instance
+        syllabi = self.get_syllabi()
         for syllabus in syllabi:
+            # Creating a csv file based on the instance syllabi's dataframe
             syllabi[syllabus].to_csv(f"{syllabus}.csv", encoding='utf-8', index=False)
+            
+            # Moving files to the same directory with other files
+            old_file_abs_path = os.path.join(os.getcwd(), f"{syllabus}.csv")
+            new_file_abs_path = os.path.join(os.getcwd(), files_dir, f"{syllabus}.csv")
+            os.rename(old_file_abs_path, new_file_abs_path)
 
     def convert_csv_to_ics(self, files_dir):
+        # Creating ics converter object and passing the csv files directory
         converter = ICSConverter(files_dir)
+
+        # Creating a list of only the name files that end with csv
         csv_filenames = [filename for filename in os.listdir(files_dir) if filename.endswith('.csv')]
+
+        # Defining the directory absolute path from where to get the csv files
+        abs_dir_path = os.path.abspath(files_dir)
+
         if csv_filenames:
             for filename in csv_filenames:
-                converter.readCSV(f"{filename}")
-                converter.exportICS()
+                # Pass csv file to the converter
+                converter.readCSV(os.path.join(abs_dir_path, filename))
+            
+            # Convert instance saved csv files to ics format
+            converter.exportICS()
         else:
             print("There are no csv files in the listed directory.")
             return False
@@ -194,21 +221,9 @@ class Reader:
         files_dir = self.get_files_dir(args)
         
         if option == '1':
-            try:
-                self.convert_docx_to_cvs(files_dir)
-                print("The docx files were converted to csv successfully.")
-            except:
-                print("The docx files could not be converted to csv.")
+            self.convert_docx_to_csv(files_dir)
         elif option == '2':
-            try:
-                self.convert_csv_to_ics(files_dir)
-            except:
-                print("The csv files could not be converted to ics.")
+            self.convert_csv_to_ics(files_dir)
         elif option == '3':
-            try:
-                self.convert_csv_to_ics(files_dir)
-                self.convert_docx_to_cvs(files_dir)
-            except: 
-                print("Failed in doing both.")
-        else:
-            print("Invalid option")
+            self.convert_docx_to_csv(files_dir)
+            self.convert_csv_to_ics(files_dir)
