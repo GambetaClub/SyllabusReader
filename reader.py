@@ -1,22 +1,21 @@
 import os
 import re
 from ics_converter import ICSConverter
-import pathlib
 import dateutil.parser
 import pandas as pd
 from docx import Document
 
 class Reader:
-    def __init__(self, directory=None, syllabi=None, calendar=None):
-        self.__directory = directory
+    def __init__(self, dir=None, syllabi=None, calendar=None):
+        self.__dir = dir
         self.__syllabi = syllabi
         self.__calendar = calendar
 
-    def set_directory(self, directory):
-        self.__directory = directory
+    def set_dir(self, dir):
+        self.__dir = dir
 
-    def get_directory(self):
-        return self.__directory
+    def get_dir(self):
+        return self.__dir
 
     def get_filenames(self):
         return [key for key in self.__tables.keys()]
@@ -30,6 +29,14 @@ class Reader:
     def get_calendar(self):
         return self.__calendar
 
+    def get_docx_course(self, document):
+        """
+        Takes a docx (docx.Document) and returns
+        the name of course the syllabus belongs to
+        """
+        # for paragraph in document.paragraphs:
+        #     print(paragraph.text)
+
     def check_date(self, d):
         """
         Takes a string date and returns
@@ -41,6 +48,9 @@ class Reader:
             return d
         except:
             return None
+
+    def insert_to_start(self, assignment, course):
+        return course + " - " + assignment
 
     def spec(self, s):
         """
@@ -78,7 +88,7 @@ class Reader:
         df = df[df.Date.notnull()]
         return df 
 
-    def convert_assignments(self,df):
+    def convert_assignments(self, df, filename):
         """
         Converts the dataframe assignments 
         values to None if the value is either
@@ -87,6 +97,7 @@ class Reader:
         with pd.option_context('mode.chained_assignment', None):
             df['Assignments'] = df['Assignments'].map(lambda s: self.spec(s))
             df = df[df.Assignments.notnull()]
+            df['Assignments'] = df["Assignments"].map(lambda s: self.insert_to_start(s, filename))
             return df
 
     def recognize_fields(self, df):
@@ -97,7 +108,7 @@ class Reader:
         """
         if isinstance(df, pd.DataFrame):
             if "Assignments" in list(df) or "Week" in list(df) or "Date" in list(df):
-                df = df[["Assignments","Week","Date"]]
+                df = df[["Assignments", "Week", "Date"]]
             else:
                 return pd.DataFrame()
         return df
@@ -128,18 +139,18 @@ class Reader:
             return None
         return dfs[0]
 
-    def load_syllabi(self, directory=None):
+    def load_syllabi(self, dir=None):
         """
-        Accepts a directory and reads their tables
+        Accepts a dir and reads their tables
         with the calendar information for each
         single docx file in the directory.
         At the end it sets the dataframes as the
         object syllabi.
         """
-        if directory != None:
-            self.set_directory(directory)
+        if dir != None:
+            self.set_dir(dir)
         syllabi = dict()
-        dir_name = self.get_directory()
+        dir_name = self.get_dir()
         for filename in os.listdir(dir_name):
             if filename.endswith(".docx"):
                 document = Document(os.path.join(dir_name, filename))
@@ -151,7 +162,7 @@ class Reader:
         for syllabus in syllabi:
             df = syllabi[syllabus]
             df = self.convert_dates(df)
-            df = self.convert_assignments(df)
+            df = self.convert_assignments(df, syllabus)
             syllabi[syllabus] = df
         self.set_syllabi(syllabi)
 
@@ -167,15 +178,15 @@ class Reader:
             files_dir = os.path.join(files_dir, args[1])
         # If not, then it asks for the user to type the name
         else:
-            print("What's the directory's name in which the csv files are?")
-            print("Press enter if it's in the current directory.")
+            print("What's the dir's name in which the csv files are?")
+            print("Press enter if it's in the current dir.")
             dir_name = input()
             files_dir = os.path.join(files_dir, dir_name)
         return files_dir
 
     def convert_docx_to_csv(self, files_dir):
         # Setting the docx directory
-        self.set_directory(files_dir)
+        self.set_dir(files_dir)
         
         # Transforming docx tables to dataframes
         self.load_syllabi()
@@ -192,13 +203,13 @@ class Reader:
             os.rename(old_file_abs_path, new_file_abs_path)
 
     def convert_csv_to_ics(self, files_dir):
-        # Creating ics converter object and passing the csv files directory
+        # Creating ics converter object and passing the csv files dir
         converter = ICSConverter(files_dir)
 
         # Creating a list of only the name files that end with csv
         csv_filenames = [filename for filename in os.listdir(files_dir) if filename.endswith('.csv')]
 
-        # Defining the directory absolute path from where to get the csv files
+        # Defining the dir absolute path from where to get the csv files
         abs_dir_path = os.path.abspath(files_dir)
 
         if csv_filenames:
@@ -209,7 +220,7 @@ class Reader:
             # Convert instance saved csv files to ics format
             converter.exportICS()
         else:
-            print("There are no csv files in the listed directory.")
+            print("There are no csv files in the listed dir.")
             return False
 
     def display_interface(self, args):
