@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #414444;
+  color: #598d8f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  width: 75rem;
+  height: 52rem;
+  background-color: #598d8f;
+}
+
+.month {
+  width: 100%;
+  height: 8rem;
+  background-color: #282c2c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.month i {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.month h1 {
+  font-size: 5rem;
+  font-variant-caps: all-petite-caps;
+}
+
+.export,
+.import {
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: #141414;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #141414;
+}
+
+.days {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+}
+.days div {
+  font-size: 1.4rem;
+  margin: 0.3rem;
+  width: calc(70.2rem / 7);
+  height: 6.5rem;
+  align-items: center;
+  background-color: #282c2c;
+}
+
+.prev-date,
+.next-date {
+  opacity: 0.5;
+}
+
+.today {
+  border-style: solid;
+  border-color: #d4d4d4;
+}
