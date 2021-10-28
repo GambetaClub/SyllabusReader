@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Font Awesome 6 Free';
+  font-family: "Font Awesome 6 Free";
 }
 
 .container {
@@ -41,7 +41,16 @@
   font-size: 5rem;
   font-variant-caps: all-petite-caps;
   letter-spacing: 0.2rem;
-  margin-top: 1rem;
+  margin-top: 0.2rem;
+}
+
+.month p {
+  margin-bottom: 0.5rem;
+}
+
+.year {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .export,
@@ -59,8 +68,6 @@
   background-color: #141414;
 }
 
-
-
 .days {
   width: 100%;
   display: flex;
@@ -76,7 +83,7 @@
   background-color: #282c2c;
 }
 
-.days div:hover:not(.today){
+.days div:hover:not(.today) {
   border-style: solid;
   border-color: #598d8f;
   cursor: pointer;

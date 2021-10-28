@@ -5,8 +5,6 @@ const renderCalendar = () => {
     
     date.setDate(1);
 
-    const month = date.getMonth()
-
     const monthDays = document.querySelector('.days');
 
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -37,6 +35,8 @@ const renderCalendar = () => {
 
     document.querySelector('.date h1').innerHTML = months[date.getMonth()];
 
+    document.querySelector('.year').innerHTML = date.getFullYear();
+
     document.querySelector('.date p').innerHTML = new Date().toDateString();
 
     let days = "";
@@ -46,7 +46,7 @@ const renderCalendar = () => {
     }
 
     for(let i = 1; i <= lastDay; i++){
-        if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
+        if(i === new Date().getDate() && (date.getMonth() === new Date().getMonth()) && date.getFullYear() === new Date().getFullYear()) {
             days += `<div class = "today">${i}</div>`;
         }else{
             days += `<div>${i}</div>`;
