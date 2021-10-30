@@ -32,7 +32,7 @@ const renderCalendar = () => {
         "December",
     ];
 
-
+    //displays the information in the header
     document.querySelector('.date h1').innerHTML = months[date.getMonth()];
 
     document.querySelector('.year').innerHTML = date.getFullYear();
@@ -45,6 +45,7 @@ const renderCalendar = () => {
         days += `<div class = "prev-date">${prevLastDay - x + 1}</div>`
     }
 
+    //displays the days
     for(let i = 1; i <= lastDay; i++){
         if(i === new Date().getDate() && (date.getMonth() === new Date().getMonth()) && date.getFullYear() === new Date().getFullYear()) {
             days += `<div class = "today">${i}</div>`;

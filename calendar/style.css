@@ -17,6 +17,7 @@
 
 .calendar {
   width: 75rem;
+  min-width: 75rem;
   height: 52rem;
   background-color: #598d8f;
 }
@@ -81,6 +82,15 @@
   height: 6.5rem;
   align-items: center;
   background-color: #282c2c;
+}
+
+.days p {
+  height: 4rem;
+  font-size: 0.7rem;
+  color: aqua;
+  padding-left: 0.5rem;
+  word-wrap: break-word;
+  overflow-y: auto;
 }
 
 .days div:hover:not(.today) {
