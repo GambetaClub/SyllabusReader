@@ -5,9 +5,13 @@
   font-family: "Font Awesome 6 Free";
 }
 
+body {
+  background-color: #414444;
+}
+
 .container {
   width: 100%;
-  height: 100vh;
+  height:100%;
   background-color: #414444;
   color: #598d8f;
   display: flex;

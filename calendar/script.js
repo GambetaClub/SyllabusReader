@@ -1,6 +1,7 @@
 //Heavily inspired by Code and Create https://www.youtube.com/watch?v=o1yMqPyYeAo&t=1135s
 const date = new Date();
 
+
 const renderCalendar = () => {
     
     date.setDate(1);
@@ -48,7 +49,8 @@ const renderCalendar = () => {
     //displays the days
     for(let i = 1; i <= lastDay; i++){
         if(i === new Date().getDate() && (date.getMonth() === new Date().getMonth()) && date.getFullYear() === new Date().getFullYear()) {
-            days += `<div class = "today">${i}</div>`;
+            days += `<div class = "today">${i + " " + `<p>${"ev3nt"}</p>`}</div>`;
+            
         }else{
             days += `<div>${i}</div>`;
         }

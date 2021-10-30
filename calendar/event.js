@@ -1,30 +1,37 @@
-let event = {
-    date:20213001,
-    group:"group name",
-    description:"description",
+class CalendarEvent {
+    date = null;
+    group = "";
+    description = "";
 
-    //methods
-    setDate : function(date) {
-        this.date = date;
-    },
+   constructor(date, group, description) {
+       this.date = date;
+       this.group = group;
+       this.description = description;
+   }
 
-    setGroup : function(group) {
-        this.group = group;
-    },
+   //methods
+   setDate(date) {
+       this.date = date;
+   }
 
-    setDescription : function(description) {
-        this.description = description;
-    },
+   setGroup(group) {
+       this.group = group;
+   }
 
-    getDate : function() {
-        return this.date;
-    },
+   setDescription(description) {
+       this.description = description;
+   }
 
-    getGroup : function() {
-        return this.group;
-    },
+   getDate() {
+       return this.date;
+   }
 
-    getDescription : function() {
-        return this.description;
-    },
+   getGroup() {
+       return this.group;
+   }
+
+   getDescription() {
+       return this.description;
+   }
 }
+let eventArray = [new CalendarEvent(13, "class", "test")];
