@@ -119,8 +119,8 @@ let event2 = new CalendarEvent("10/27/2021", "group", "a nice description2");
 let event3 = new CalendarEvent("10/28/2021", "group", "a nice description3");
 let event4 = new CalendarEvent("10/2/2021", "group", "a nice description4");
 let event5 = new CalendarEvent("10/03/2021", "group", "a nice description5");
-let event6 = new CalendarEvent("10/04/2021", "group", "a nice description6");
-let event7 = new CalendarEvent("10/4/2021", "group", "a nice description7");
+let event6 = new CalendarEvent("10/31/2021", "group", "a nice description6");
+let event7 = new CalendarEvent("10/31/2021", "group", "a nice description7");
 let event8 = new CalendarEvent("11/2/2021", "group", "a nice description8");
 let event9 = new CalendarEvent("11/02/2021", "group", "a nice description9");
 let event10 = new CalendarEvent("11/13/2021", "group", "a nice description10");
@@ -140,3 +140,32 @@ document.querySelector('.next').addEventListener('click', () => {
 });
 
 renderCalendar(eventArray);
+
+
+//popup when clicking on a day
+const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]")
+
+openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+})
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+});
+
+function openModal(modal) {
+    if (modal == null) return;
+    modal.classList.add('active')   
+}
+
+function closeModal(modal) {
+    if (modal == null) return;
+    modal.classList.remove('active')  
+}
