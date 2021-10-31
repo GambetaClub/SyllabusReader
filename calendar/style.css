@@ -14,9 +14,6 @@ body {
   height: 100%;
   background-color: #414444;
   color: #598d8f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .calendar {
@@ -24,6 +21,9 @@ body {
   min-width: 75rem;
   height: 52rem;
   background-color: #598d8f;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .month {
@@ -78,11 +78,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding: 0.2rem;
-  transform: scale(0);
-}
-
-.days.active {
-  transform: scale(1);
 }
 
 .days div {
@@ -121,20 +116,22 @@ body {
 }
 
 .modal {
-  width: 100%;
+  width: 75rem;
   height: 43rem;
+  position: fixed;
   border-style: solid;
   border-width: 0.8rem;
   border-color: #598d8f;
   z-index: 10;
   background-color: #282c2c;
-  transform: translate(0%, -100%) scale(0);
+  left: 50%;
+  transform: translate(-50%, 0%) scale(0);
   justify-content: space-evenly;
   align-items: center;
 }
 
 .modal.active {
-  transform: translate(0%, -100%) scale(1);
+  transform: translate(-50%, 21%) scale(1);
 }
 
 .modal-header {
