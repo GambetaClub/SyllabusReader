@@ -162,10 +162,31 @@ closeModalButtons.forEach(button => {
 
 function openModal(modal) {
     if (modal == null) return;
-    modal.classList.add('active')   
+    //let node = document.getElementsByClassName(".days");
+    //let htmlContent = button.innerHTML;
+    modal.classList.add('active')
 }
 
 function closeModal(modal) {
     if (modal == null) return;
-    modal.classList.remove('active')  
+    modal.classList.remove('active')
 }
+
+function addNewEvent(date, group, description, array) {
+    let event = new CalendarEvent(date, group, description);
+    array.push(event);
+}
+
+const createEventButton = document.querySelectorAll("[data-event-button]")
+
+createEventButton.forEach(button => {
+    button.addEventListener('click', () => {
+        const date = button.getElementById("date").inputbox.value
+        console.log(date)
+        const group = document.querySelector(button.getElementById("group"))
+        console.log(group)
+        const description = document.querySelector(button.getElementById("description"))
+        console.log(description)
+        addNewEvent(date, group, description)
+    })
+})
