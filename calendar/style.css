@@ -21,7 +21,7 @@ body {
   min-width: 75rem;
   height: 52rem;
   background-color: #598d8f;
-  position: fixed;
+  position:absolute;
   left: 50%;
   transform: translate(-50%);
 }
@@ -141,7 +141,7 @@ body {
 .modal {
   width: 75rem;
   height: 43rem;
-  position: fixed;
+  position: absolute;
   border-style: solid;
   border-width: 0.8rem;
   border-color: #598d8f;
