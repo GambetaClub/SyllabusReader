@@ -171,12 +171,6 @@ function addNewEvent(date, group, description, array) {
 function findEvent(date, group, description, array) {
     let index
     array.forEach(function(item, i) {
-        console.log(item.getDate(0)==date[0])
-        console.log(item.getDate(1)==date[1] && item.getDate(2)==date[2])
-        console.log(item.getGroup()==group && item.getDescription()==description)
-        console.log((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description))
-        console.log(item.getDate(0)==date[0] && ((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description)))
-        console.log("date0 " + item.getDate(0) + ":" + date[0] + " date1 " + item.getDate(1) + ":" + date[1] + " date2 " + item.getDate(2) + ":" + date[2] + " description " + item.getDescription() + ":" + description + " group " + item.getGroup() + " " + group)
         if(item.getDate(0)==date[0] && ((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description))) {
             index = i;
         }
@@ -186,6 +180,12 @@ function findEvent(date, group, description, array) {
 
 function deleteEvent(index, array) {
     array.splice(index)
+}
+
+function changeEvent(date, group, description, index, array) {
+        array[index].setDate(date)
+        array[index].setGroup(group)
+        array[index].setDescription(description)
 }
 
 const createEventButton = document.querySelectorAll("[data-event-add]")
@@ -229,11 +229,20 @@ deleteEventButton.forEach(button => {
 
 changeEventButton.forEach(button => {
     button.addEventListener('click', () => {
-        const date = document.getElementById("add-date").value
-        console.log(date)
-        const group = document.getElementById("add-group").value
-        console.log(group)
-        const description = document.getElementById("add-description").value
-        console.log(description)
+        let findDate = document.getElementById("find-date").value.split('/')
+        findDate[0] = findDate[0]-1;
+        const findGroup = document.getElementById("find-group").value
+        const findDescription = document.getElementById("find-description").value
+        let index = findEvent(findDate, findGroup, findDescription, eventArray)
+        console.log(index)
+        if(index != null) {
+            let changeDate = document.getElementById("change-date").value
+            const changeGroup = document.getElementById("change-group").value
+            const changeDescription = document.getElementById("change-description").value
+            changeEvent(changeDate, changeGroup, changeDescription, index, eventArray);
+            renderCalendar(eventArray);
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        }
     })
 })
