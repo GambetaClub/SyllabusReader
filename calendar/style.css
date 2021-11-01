@@ -58,12 +58,23 @@ body {
   margin-bottom: 0.3rem;
 }
 
-.export,
-.import {
+.export{
   font-size: 1.5rem;
   padding: 0.4rem;
   cursor: pointer;
   background-color: #141414;
+}
+
+.import .button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #598d8f;
+  background-color: #141414;
+  padding: 0.4rem;
 }
 
 .weekdays {
@@ -160,3 +171,4 @@ body {
 .modal-body {
   padding: 1rem;
 }
+
