@@ -115,19 +115,9 @@ const renderCalendar = (eventArray) => {
 }
 
 let event1 = new CalendarEvent("10/27/2021", "group", "a nice description1");
-let event2 = new CalendarEvent("10/27/2021", "group", "a nice description2");
-let event3 = new CalendarEvent("10/28/2021", "group", "a nice description3");
-let event4 = new CalendarEvent("10/2/2021", "group", "a nice description4");
-let event5 = new CalendarEvent("10/03/2021", "group", "a nice description5");
-let event6 = new CalendarEvent("10/31/2021", "group", "a nice description6");
-let event7 = new CalendarEvent("10/31/2021", "group", "a nice description7");
-let event8 = new CalendarEvent("11/2/2021", "group", "a nice description8");
-let event9 = new CalendarEvent("11/02/2021", "group", "a nice description9");
-let event10 = new CalendarEvent("11/13/2021", "group", "a nice description10");
-let event11 = new CalendarEvent("11/16/2021", "group", "a nice description11");
-let event12 = new CalendarEvent("11/25/2021", "group", "a nice description12");
 
-let eventArray = [event1, event2, event3, event4, event5, event6, event7, event8, event9, event10, event11, event12];
+
+let eventArray = [event1];
 
 document.querySelector('.prev').addEventListener('click', () => {
     date.setMonth(date.getMonth() - 1);
@@ -165,10 +155,85 @@ closeModalButtons.forEach(button => {
 
 function openModal(modal) {
     if (modal == null) return;
-    modal.classList.add('active')   
+    modal.classList.add('active')
 }
 
 function closeModal(modal) {
     if (modal == null) return;
     modal.classList.remove('active')  
 }
+
+function addNewEvent(date, group, description, array) {
+    let event = new CalendarEvent(date, group, description);
+    array.push(event);
+}
+
+function findEvent(date, group, description, array) {
+    let index
+    array.forEach(function(item, i) {
+        console.log(item.getDate(0)==date[0])
+        console.log(item.getDate(1)==date[1] && item.getDate(2)==date[2])
+        console.log(item.getGroup()==group && item.getDescription()==description)
+        console.log((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description))
+        console.log(item.getDate(0)==date[0] && ((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description)))
+        console.log("date0 " + item.getDate(0) + ":" + date[0] + " date1 " + item.getDate(1) + ":" + date[1] + " date2 " + item.getDate(2) + ":" + date[2] + " description " + item.getDescription() + ":" + description + " group " + item.getGroup() + " " + group)
+        if(item.getDate(0)==date[0] && ((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description))) {
+            index = i;
+        }
+    })
+    return index;
+}
+
+function deleteEvent(index, array) {
+    array.splice(index)
+}
+
+const createEventButton = document.querySelectorAll("[data-event-add]")
+const deleteEventButton = document.querySelectorAll("[data-event-delete]")
+const changeEventButton = document.querySelectorAll("[data-event-change]")
+
+createEventButton.forEach(button => {
+    button.addEventListener('click', () => {
+        const date = document.getElementById("add-date").value
+        console.log(date)
+        const group = document.getElementById("add-group").value
+        console.log(group)
+        const description = document.getElementById("add-description").value
+        console.log(description)
+        addNewEvent(date, group, description, eventArray)
+        renderCalendar(eventArray);
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+})
+
+deleteEventButton.forEach(button => {
+    button.addEventListener('click', () => {
+        let date = document.getElementById("find-date").value.split('/')
+        date[0] = date[0]-1;
+        console.log("delete: " + date)
+        const group = document.getElementById("find-group").value
+        console.log("delete: "+ group)
+        const description = document.getElementById("find-description").value
+        console.log("delte: "+description)
+        let index = findEvent(date, group, description, eventArray)
+        console.log(index)
+        if(index != null) {
+            deleteEvent(index, eventArray)
+            renderCalendar(eventArray);
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        }
+    })
+})
+
+changeEventButton.forEach(button => {
+    button.addEventListener('click', () => {
+        const date = document.getElementById("add-date").value
+        console.log(date)
+        const group = document.getElementById("add-group").value
+        console.log(group)
+        const description = document.getElementById("add-description").value
+        console.log(description)
+    })
+})
