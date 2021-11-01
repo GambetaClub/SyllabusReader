@@ -172,36 +172,3 @@ function closeModal(modal) {
     if (modal == null) return;
     modal.classList.remove('active')  
 }
-
-// let fileHandle;
-
-// const pickerOpts = {
-//     types: [
-//       {
-//         description: 'Structured information',
-//         accept: {
-//           'data/*': ['.csv', '.ics']
-//         }
-//       },
-//     ],
-//     excludeAcceptAllOption: true,
-//     multiple: false
-//   };
-
-// async function button() {
-//     // open file picker
-//     [fileHandle] = await window.showOpenFilePicker(pickerOpts);
-
-//     if (fileHandle.kind === '.csv') {
-//         // run file code
-//         console.log("this is a csv.");
-//     } else if (fileHandle.kind === '.ics') {
-//         // run directory code
-//         console.log("this is an ics.");
-//     }
-
-//     document.getElementById('files').onchange = function(){
-//         let file = this.files[0];
-//         console.log(file);
-//     }
-// }
