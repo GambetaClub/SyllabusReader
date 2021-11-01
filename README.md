@@ -9,9 +9,6 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 ### Download our files from GitHub
 * This can be done either by downloading zip, or by cloning the [Git repository](https://github.com/GambetaClub/SyllabusReader).
 
-### Accessing the calendar interface
-* Simply go to the calendar folder in our project files, and select "index." This will run the calendar interface locally on your device, allowing you to add, delete, display and modify assignments on a calendar interface.
-
 ### Install Python
 * This can be done through your device's webstore, or from the [Python website](https://www.python.org/downloads/), or even through the terminal by typing `python3`.
 
@@ -33,4 +30,7 @@ Our goal is to create an easy way for students to add due dates from the syllabi
 ### Output
 * The current output of the program is an ics file "test.ics" inside the directory you created. You can export this file to your calendar of choice.
 * Examples would be [Google Calendar](https://calendar.google.com/) or [iCalendar](https://www.icloud.com/calendar).
+
+### Accessing the calendar interface
+* Simply go to the calendar folder in our project files, and select "index." This will run the calendar interface locally on your device, allowing you to add, delete, display and modify assignments on a calendar interface.
 
