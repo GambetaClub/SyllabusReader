@@ -181,12 +181,15 @@ const createEventButton = document.querySelectorAll("[data-event-button]")
 
 createEventButton.forEach(button => {
     button.addEventListener('click', () => {
-        const date = button.getElementById("date").inputbox.value
+        const date = document.getElementById("date").value
         console.log(date)
-        const group = document.querySelector(button.getElementById("group"))
+        const group = document.getElementById("group").value
         console.log(group)
-        const description = document.querySelector(button.getElementById("description"))
+        const description = document.getElementById("description").value
         console.log(description)
-        addNewEvent(date, group, description)
+        addNewEvent(date, group, description, eventArray)
+        renderCalendar(eventArray);
+        const modal = button.closest('.modal')
+        closeModal(modal)
     })
 })
