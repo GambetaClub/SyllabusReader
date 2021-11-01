@@ -36,7 +36,7 @@ class CalendarEvent {
 }
 
 const date = new Date();
-
+const importButton = document.querySelector('.import');
 const renderCalendar = (eventArray) => {
     
     date.setDate(1);
@@ -139,6 +139,9 @@ document.querySelector('.next').addEventListener('click', () => {
     renderCalendar(eventArray);
 });
 
+document.querySelector('.import').addEventListener('click', () => {
+});
+
 renderCalendar(eventArray);
 
 
@@ -168,4 +171,19 @@ function openModal(modal) {
 function closeModal(modal) {
     if (modal == null) return;
     modal.classList.remove('active')  
+}
+
+let fileHandle;
+
+async function button() {
+    // open file picker
+    [fileHandle] = await window.showOpenFilePicker();
+
+    if (fileHandle.kind === 'file') {
+        // run file code
+        console.log("this is a file.")
+    } else if (fileHandle.kind === 'directory') {
+        // run directory code
+        console.log("this is a directory.")
+    }
 }
