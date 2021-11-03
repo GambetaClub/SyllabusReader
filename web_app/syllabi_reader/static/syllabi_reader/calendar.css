@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Font Awesome 6 Free";
+  }
+  
+  body {
+    background-color: #414444;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    background-color: #414444;
+    color: #598d8f;
+  }
+  
+  .calendar {
+    width: 75rem;
+    min-width: 75rem;
+    height: 52rem;
+    background-color: #598d8f;
+    position:absolute;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  
+  .month {
+    width: 100%;
+    height: 8rem;
+    background-color: #282c2c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  
+  .month i {
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+  
+  .month h1 {
+    font-size: 5rem;
+    font-variant-caps: all-petite-caps;
+    letter-spacing: 0.2rem;
+    margin-top: 0.2rem;
+  }
+  
+  .month p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .year {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .export{
+    font-size: 1.5rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    background-color: #141414;
+  }
+  
+  .import .button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #598d8f;
+    background-color: #141414;
+    padding: 0.4rem;
+  }
+  
+  ::-webkit-file-upload-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #598d8f;
+    background-color: #141414;
+    padding: 0.4rem;
+  }
+  
+  .weekdays {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #141414;
+  }
+  
+  .days {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.2rem;
+  }
+  
+  .days div {
+    font-size: 1.4rem;
+    margin: 0.3rem;
+    width: calc(70.2rem / 7);
+    height: 6.5rem;
+    align-items: center;
+    background-color: #282c2c;
+  }
+  
+  .days p {
+    height: 4rem;
+    font-size: 0.7rem;
+    color: aqua;
+    padding-left: 0.5rem;
+    word-wrap: break-word;
+    overflow-y: auto;
+  }
+  
+  .days div:hover:not(.today) {
+    border-style: solid;
+    border-color: #598d8f;
+    cursor: pointer;
+  }
+  
+  .prev-date,
+  .next-date {
+    opacity: 0.5;
+  }
+  
+  .today {
+    border-style: solid;
+    border-color: #d4d4d4;
+    cursor: pointer;
+  }
+  
+  .modal {
+    width: 75rem;
+    height: 43rem;
+    position: absolute;
+    border-style: solid;
+    border-width: 0.8rem;
+    border-color: #598d8f;
+    z-index: 10;
+    background-color: #282c2c;
+    left: 50%;
+    transform: translate(-50%, 0%) scale(0);
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, 21%) scale(1);
+  }
+  
+  .modal-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.25rem solid #598d8f;
+  }
+  
+  .modal-header .title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #598d8f;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  
