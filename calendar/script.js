@@ -129,9 +129,6 @@ document.querySelector('.next').addEventListener('click', () => {
     renderCalendar(eventArray);
 });
 
-document.querySelector('.import').addEventListener('click', () => {
-});
-
 renderCalendar(eventArray);
 
 
