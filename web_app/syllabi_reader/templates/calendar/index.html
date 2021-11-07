@@ -13,6 +13,7 @@
          />
    </head>
    <body>
+      {{ error_message }}
       <div class="container">
          <div class="calendar">
             <div class="month">
@@ -24,10 +25,13 @@
                   <p></p>
                </div>
                <div class="import">
-                  Import:
-                  <button class = "button">
-                  <input type="file" accept= ".csv"/>
-                  </button>
+                  <form action="{% url 'index' %}" method="post" enctype="multipart/form-data" id="file_form">
+                     {% csrf_token %}
+                     Import:
+                  <button class="button">
+                     {{ form }}
+                  </button>   
+                  </form>
                </div>
                <i class="fas fa-angle-right next"></i>
             </div>
@@ -76,7 +80,6 @@
             </div>
          </div>
       </div>
-      <script src="script.js"></script>
       <script src="{% static 'syllabi_reader/calendar.js' %}"></script>
    </body>
 </html>
