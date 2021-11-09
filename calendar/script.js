@@ -93,7 +93,7 @@ const renderCalendar = (eventArray) => {
                         dailyEvents += event.getDescription() + "<br>";
                 }
             })
-            days += `<div class = "today">${i + " " + `<p>${dailyEvents}</p>`}</div>`;
+            days += `<div class = "${date.getFullYear()}, ${months[date.getMonth()]}, ${i}, today">${i + " " + `<p>${dailyEvents}</p>`}</div>`;
             
         }else{
             //loops through the events array
@@ -103,7 +103,7 @@ const renderCalendar = (eventArray) => {
                     dailyEvents += event.getDescription() + "<br>";
                 }
             })
-            days += `<div>${i + " " + `<p>${dailyEvents}</p>`}</div>`;
+            days += `<div class = "${date.getFullYear()}, ${months[date.getMonth()]}, ${i}">${i + " " + `<p>${dailyEvents}</p>`}</div>`;
         }
     }
 
@@ -115,9 +115,10 @@ const renderCalendar = (eventArray) => {
 }
 
 let event1 = new CalendarEvent("10/27/2021", "group", "a nice description1");
+let event2 = new CalendarEvent("10/27/2021", "group", "description1");
+let event3 = new CalendarEvent("10/29/2021", "group", "a bad description1");
 
-
-let eventArray = [event1];
+let eventArray = [event1, event2, event3];
 
 document.querySelector('.prev').addEventListener('click', () => {
     date.setMonth(date.getMonth() - 1);
@@ -136,11 +137,18 @@ renderCalendar(eventArray);
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]")
 
+//target.classList - gives the class in an array thingy.
+//target.textContent || target.innerText - gives the string of the events on the day clicked on.
 openModalButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', function(e) {
+        e = e || window.event;
+        var target = e.target, text = target.classList;
         const modal = document.querySelector(button.dataset.modalTarget)
-        openModal(modal)
-    })
+        if(text[0] != "next-date" && text[0] != "prev-date" && text[0] != "days") {
+            console.log(text)
+            openModal(modal)
+        }
+    }, false);
 })
 
 closeModalButtons.forEach(button => {
