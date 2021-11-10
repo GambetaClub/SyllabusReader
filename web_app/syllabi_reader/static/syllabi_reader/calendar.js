@@ -246,3 +246,9 @@ changeEventButton.forEach(button => {
         }
     })
 })
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById("file_input").onchange = function() {
+        document.getElementById("file_form").submit();
+    };
+});
