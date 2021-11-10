@@ -36,7 +36,7 @@ class CalendarEvent {
 }
 
 const date = new Date();
-const importButton = document.querySelector('.import');
+// const importButton = document.querySelector('.import');
 const renderCalendar = (eventArray) => {
     
     date.setDate(1);
@@ -243,3 +243,12 @@ changeEventButton.forEach(button => {
         }
     })
 })
+
+
+document.getElementById('docpicker').onchange = function(){
+    console.log("Before");
+    let file = this.files[0];
+    console.log("After #1");
+    console.log(file);
+    console.log("After #2");
+}
