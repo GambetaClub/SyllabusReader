@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from new_reader import Reader
 from syllabi_reader.models import Document
 from syllabi_reader.forms import DocumentForm
@@ -45,17 +45,12 @@ def format_filename(filename):
 
 def clean_calendar_df(calendar):
     calendar.reset_index(drop=True, inplace=True)
-    calendar['Date'] = calendar['Date'].apply(lambda x: x.strftime("%m/%d/%Y, %H:%M:%S"))
     calendar = calendar.to_json()
     calendar = json.loads(calendar)
     return calendar
-
-
  
 def index(request):
-    if "calendar" not in request.session:
-        request.session["calendar"] = []
-    return render(request, "calendar/index.html", {
+    return render(request, "syllabi_reader/index.html", {
         "form": DocumentForm(),
     })
 
@@ -67,8 +62,14 @@ def read_docx(request):
             file.name = format_filename(file.name)
             doc = Document(file = file)
             doc.save()
-            calendar = clean_calendar_df(get_calendar_df(file.name))
-            return JsonResponse(calendar)
-            # return ({"calendar": json_dump}, status=201)
+            calendar = get_calendar_df(file.name)
+            if calendar:
+                calendar = clean_calendar_df(calendar)
+                return JsonResponse(calendar)
+            else:
+                return render(request, "syllabi_reader/index.html", {
+                    "form": DocumentForm(),
+                    "error_message": "The syllabus inserted was not valid. Make sure it has tables."
+                })
     else:
         return reverse('syllabi_reader:index')

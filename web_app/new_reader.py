@@ -39,7 +39,7 @@ class Reader:
     def check_date(self, d):
         """
         Takes a string date and returns
-        the a stringuniform date format if
+        the a string uniform date format if
         possible. Otherwise, it returns None 
         """
         try:
@@ -85,6 +85,7 @@ class Reader:
         """
         df['Date'] = df['Date'].map(lambda d: self.check_date(d))
         df = df[df.Date.notnull()]
+        df['Date'] = df['Date'].apply(lambda x: x.strftime("%m/%d/%Y, %H:%M:%S"))
         return df 
 
     def convert_assignments(self, df, filename):
@@ -150,6 +151,8 @@ class Reader:
         if file_path.endswith(".docx"):
             document = Document(file_path)
             df = self.read_docx_table(document)
+            if not df:
+                return None
             df = self.convert_dates(df)
             course_id = self.get_class_id(file_path)
             df = self.convert_assignments(df, course_id)
