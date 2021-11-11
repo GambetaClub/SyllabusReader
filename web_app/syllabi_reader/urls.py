@@ -3,6 +3,8 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name = "syllabi_reader"
 urlpatterns = [
-    path("", views.index, name="index")
+    path("", views.index, name="index"),
+    path("read_docx", views.read_docx, name="read_docx"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
