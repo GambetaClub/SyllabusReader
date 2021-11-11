@@ -248,7 +248,10 @@ changeEventButton.forEach(button => {
 })
 
 window.addEventListener('DOMContentLoaded', (event) => {
+    var calendar = "{{calendar}}"
+    console.log(calendar)
     document.getElementById("file_input").onchange = function() {
         document.getElementById("file_form").submit();
     };
+    
 });

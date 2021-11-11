@@ -151,7 +151,6 @@ class Reader:
             document = Document(file_path)
             df = self.read_docx_table(document)
             df = self.convert_dates(df)
-
             course_id = self.get_class_id(file_path)
             df = self.convert_assignments(df, course_id)
             # csv = df.to_csv(f"{course_id}.csv", encoding='utf-8', index=False)

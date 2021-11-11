@@ -13,7 +13,7 @@
          />
    </head>
    <body>
-      {{ error_message }}
+      {{ calendar }}
       <div class="container">
          <div class="calendar">
             <div class="month">
@@ -25,7 +25,7 @@
                   <p></p>
                </div>
                <div class="import">
-                  <form action="{% url 'index' %}" method="post" enctype="multipart/form-data" id="file_form">
+                  <form action="{% url 'syllabi_reader:read_docx' %}" method="post" enctype="multipart/form-data" id="file_form">
                      {% csrf_token %}
                      Import:
                   <button class="button">
