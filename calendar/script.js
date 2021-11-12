@@ -165,26 +165,32 @@ openModalButtons.forEach(button => {
             if(event.getDate(1) == text[2] && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                 eventFound = true
                 //generates the textboxes and buttons for the specified event
-                dailyEvents += `<p>Date</p>
-                                <input id="date${index}" type="text" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}" />
-                                <p>Group Name</p>
-                                <input id="group${index}" type="text" value="${event.getGroup()}" />
-                                <p>Description</p>
-                                <input id="description${index}" type="text" value="${event.getDescription()}" />
-                                <button data-event-delete${index} id="delete-event${index}" onclick="deleteEvent(${index}, eventArray)">Delete Event</button>`
+                dailyEvents += `<div class="event-section">
+                                    <b>Event</b>
+                                    <p>Date</p>
+                                    <input id="date${index}" type="text" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}" />
+                                    <p>Group Name</p>
+                                    <input id="group${index}" type="text" value="${event.getGroup()}" />
+                                    <p>Description</p>
+                                    <input id="description${index}" type="text" value="${event.getDescription()}" />
+                                    <button data-event-delete${index} id="delete-event${index}" onclick="deleteEvent(${index}, eventArray)">Delete Event</button>
+                                </div>`
             }
         })
         if(eventFound) {
             dailyEvents += `<button data-event-save id="save-events">Save Events</button>`
         }
         //generates the add event textboxes and buttons
-        dailyEvents += `<p>Date</p>
-                        <input id="add-date" type="text" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}"/>
-                        <p>Group Name</p>
-                        <input id="add-group" type="text"/>
-                        <p>Description</p>
-                        <input id="add-description" type="text"/>
-                        <button data-event-add id="add-event">Add Event</button>`
+        dailyEvents += `<div class="event-section">
+                            <b>Add Event</b>
+                            <p>Date</p>
+                            <input id="add-date" type="text" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}"/>
+                            <p>Group Name</p>
+                            <input id="add-group" type="text"/>
+                            <p>Description</p>
+                            <input id="add-description" type="text"/>
+                            <button data-event-add id="add-event">Add Event</button>
+                        </div>`
         document.getElementById("modal-body").innerHTML = dailyEvents;
 
         //section that actually opens the modal

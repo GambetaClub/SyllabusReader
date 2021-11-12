@@ -185,4 +185,23 @@ body {
 
 #modal-body {
   padding: 1rem;
+  height: 36rem;
+  transform: translate(0%, 1%);
+  overflow-y: auto;
+}
+
+.event-section {
+  padding: 0rem 0rem 1rem 0rem;
+}
+
+.event-section b {
+  font-weight: bold;
+  font-size: 1.5rem;
+  justify-content: right;
+}
+
+.event-section input {
+  border: none;
+  background-color: #598d8f;
+  outline: none;
 }
