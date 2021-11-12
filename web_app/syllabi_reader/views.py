@@ -9,7 +9,7 @@ import re
 import json
 import numpy as np
 
-# from django.views.decorators.csrf import csrf_exempt,csrf_protect #Add this
+from django.views.decorators.csrf import csrf_exempt,csrf_protect #Add this
 
 reader = Reader()
 
