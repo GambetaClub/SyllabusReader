@@ -151,7 +151,7 @@ class Reader:
         if file_path.endswith(".docx"):
             document = Document(file_path)
             df = self.read_docx_table(document)
-            if not df:
+            if df is None:
                 return None
             df = self.convert_dates(df)
             course_id = self.get_class_id(file_path)
