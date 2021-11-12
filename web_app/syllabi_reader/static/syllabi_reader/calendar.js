@@ -251,7 +251,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var calendar = "{{calendar}}"
     console.log(calendar)
     document.getElementById("file_input").onchange = function() {
-        document.getElementById("file_form").submit();
+                // event.preventDefault();
+                let fileSelect = document.getElementById("file_input");
+                var files = fileSelect.files;
+                var formData = new FormData();
+                var file = files[0];
+                formData.append('file-select', file, file.name);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/read_docx', true);
+                // xhr.upload.onprogress = function (e) {
+                //   update_progress(e);
+                // }
+                xhr.onload = function (e) {
+                  if (xhr.status === 200) {
+                    // uploadButton.innerHTML = 'Upload';
+                    // progressdiv.innerHTML = "<h3>Sucess</h3>";
+                    alert("An error did not happen");
+                    console.log(xhr.responseText);
+                  } else {
+                    alert('An error occurred!');
+                  }
+                };
+                xhr.send(formData);
     };
     
 });

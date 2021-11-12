@@ -9,6 +9,8 @@ import re
 import json
 import numpy as np
 
+# from django.views.decorators.csrf import csrf_exempt,csrf_protect #Add this
+
 reader = Reader()
 
 class NumpyEncoder(json.JSONEncoder):
@@ -54,6 +56,7 @@ def index(request):
         "form": DocumentForm(),
     })
 
+# @csrf_exempt
 def read_docx(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
