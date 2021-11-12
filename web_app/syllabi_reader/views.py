@@ -63,13 +63,13 @@ def read_docx(request):
             doc = Document(file = file)
             doc.save()
             calendar = get_calendar_df(file.name)
-            if calendar:
-                calendar = clean_calendar_df(calendar)
-                return JsonResponse(calendar)
-            else:
+            if calendar is None:
                 return render(request, "syllabi_reader/index.html", {
                     "form": DocumentForm(),
                     "error_message": "The syllabus inserted was not valid. Make sure it has tables."
                 })
+            else:
+                calendar = clean_calendar_df(calendar)
+                return JsonResponse(calendar)
     else:
         return reverse('syllabi_reader:index')
