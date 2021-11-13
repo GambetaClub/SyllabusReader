@@ -247,11 +247,27 @@ changeEventButton.forEach(button => {
     })
 })
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    var calendar = "{{calendar}}"
-    console.log(calendar)
-    document.getElementById("file_input").onchange = function() {
-        document.getElementById("file_form").submit();
-    };
+$('#file_form').change(function(e){
+    var form_data = new FormData();
+    var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
+    form_data.append('file', $('#file_input')[0].files[0]);    
     
+    $.ajax({
+        type:'POST',
+        url:'/read_docx',
+        headers: {'X-CSRFToken': token},
+        processData: false,
+        contentType: false,
+        datatype: 'json',
+        async: false,
+        cache: false,
+        data : form_data,
+        success: function(response){
+            console.log(response)
+        },
+        error: function(response){
+            console.log("Something went wrong: " + response)
+        }
+    });
+    e.preventDefault();
 });

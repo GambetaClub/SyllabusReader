@@ -9,6 +9,8 @@ import re
 import json
 import numpy as np
 
+# from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
 reader = Reader()
 
 class NumpyEncoder(json.JSONEncoder):
@@ -54,6 +56,7 @@ def index(request):
         "form": DocumentForm(),
     })
 
+# @csrf_exempt
 def read_docx(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -64,12 +67,11 @@ def read_docx(request):
             doc.save()
             calendar = get_calendar_df(file.name)
             if calendar is None:
-                return render(request, "syllabi_reader/index.html", {
-                    "form": DocumentForm(),
-                    "error_message": "The syllabus inserted was not valid. Make sure it has tables."
-                })
+                return HttpResponse("Empty calendar")
             else:
                 calendar = clean_calendar_df(calendar)
                 return JsonResponse(calendar)
+        else:
+            return HttpResponse("Form not valid")
     else:
         return reverse('syllabi_reader:index')
