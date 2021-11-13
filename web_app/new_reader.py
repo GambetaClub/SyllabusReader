@@ -85,7 +85,7 @@ class Reader:
         """
         df['Date'] = df['Date'].map(lambda d: self.check_date(d))
         df = df[df.Date.notnull()]
-        df['Date'] = df['Date'].apply(lambda x: x.strftime("%m/%d/%Y, %H:%M:%S"))
+        df['Date'] = df['Date'].apply(lambda x: x.strftime("%m/%d/%Y"))
         return df 
 
     def convert_assignments(self, df, filename):
