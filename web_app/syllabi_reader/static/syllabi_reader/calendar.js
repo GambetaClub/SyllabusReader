@@ -195,11 +195,8 @@ const changeEventButton = document.querySelectorAll("[data-event-change]")
 createEventButton.forEach(button => {
     button.addEventListener('click', () => {
         const date = document.getElementById("add-date").value
-        console.log(date)
         const group = document.getElementById("add-group").value
-        console.log(group)
         const description = document.getElementById("add-description").value
-        console.log(description)
         addNewEvent(date, group, description, eventArray)
         renderCalendar(eventArray);
         const modal = button.closest('.modal')
@@ -211,13 +208,9 @@ deleteEventButton.forEach(button => {
     button.addEventListener('click', () => {
         let date = document.getElementById("find-date").value.split('/')
         date[0] = date[0]-1;
-        console.log("delete: " + date)
         const group = document.getElementById("find-group").value
-        console.log("delete: " + group)
         const description = document.getElementById("find-description").value
-        console.log("delete: " + description)
         let index = findEvent(date, group, description, eventArray)
-        console.log(index)
         if(index != null) {
             deleteEvent(index, eventArray)
             renderCal
@@ -234,7 +227,6 @@ changeEventButton.forEach(button => {
         const findGroup = document.getElementById("find-group").value
         const findDescription = document.getElementById("find-description").value
         let index = findEvent(findDate, findGroup, findDescription, eventArray)
-        console.log(index)
         if(index != null) {
             let changeDate = document.getElementById("change-date").value
             const changeGroup = document.getElementById("change-group").value
@@ -264,8 +256,12 @@ function handleResponse(obj) {
         let eventDate = obj["Date"][i]
         addNewEvent(eventDate, "No group", eventAssignment, eventArray)
     }
-    console.log(eventArray)
     renderCalendar(eventArray);
+}
+
+function handleError(errorMessage) {
+    // Show dismissible error message
+    $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
 }
 
 $('#file_form').change(function(e){
@@ -283,12 +279,12 @@ $('#file_form').change(function(e){
         async: false,
         cache: false,
         data : form_data,
-        success: function(response){
-            handleResponse(response)
+        success: function(data){
+            handleResponse(data)
         },
-        error: function(response){
-            console.log("Something went wrong: " + response)
-        }
+        error:function(data){
+            handleError(data.statusText);
+        } 
     });
     e.preventDefault();
 });

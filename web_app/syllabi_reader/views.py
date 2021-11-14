@@ -66,12 +66,17 @@ def read_docx(request):
             doc = Document(file = file)
             doc.save()
             calendar = get_calendar_df(file.name)
+            doc.delete()
             if calendar is None:
-                return HttpResponse("Empty calendar")
+                response = HttpResponse(status=400)
+                response.reason_phrase = "Syllabus empty. Make sure the docx file has a table."
+                return response
             else:
                 calendar = clean_calendar_df(calendar)
-                return JsonResponse(calendar)
+                return JsonResponse(calendar, status=200)
         else:
-            return HttpResponse("Form not valid")
+            response = HttpResponse(status=400)
+            response.reason_phrase = "Form not valid."
+            return response
     else:
         return reverse('syllabi_reader:index')
