@@ -1,93 +1,70 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Calendar</title>
-      <link rel="stylesheet" href="{% static 'syllabi_reader/calendar.css' %}" />
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-         />
-   </head>
-   <body>
-      <div class="container">
-         {% if error_message %}
-         <div class="error-notice">
-            <div class="oaerror danger">
-              <strong>Error</strong>- {{ error_message}}
-            </div>
-         </div>
-      {% endif %}
-         <div class="calendar">
-            <div class="month">
-               <i class="fas fa-angle-left prev"></i>
-               <div class="export">Export</div>
-               <div class="date">
-                  <h1></h1>
-                  <div class="year"></div>
-                  <p></p>
-               </div>
-               <div class="import">
-                  <form action="{% url 'syllabi_reader:read_docx' %}" method="post" enctype="multipart/form-data" id="file_form">
-                     {% csrf_token %}
-                     Import:
-                  <button class="button">
-                     {{ form }}
-                  </button>   
-                  </form>
-               </div>
-               <i class="fas fa-angle-right next"></i>
-            </div>
-            <div class="weekdays">
-               <div>Sun</div>
-               <div>Mon</div>
-               <div>Tue</div>
-               <div>Wed</div>
-               <div>Thu</div>
-               <div>Fri</div>
-               <div>Sat</div>
-            </div>
-            <div class="days" data-modal-target="#modal">
-               <p></p>
-            </div>
-         </div>
-         <div class="modal" id="modal">
-            <div class="modal-header">
-               <div class="title">AddEvent</div>
-               <button data-close-button class="close-button">&times;</button>
-            </div>
-            <div class="modal-body">
-               <p>Date ex   12/28/2021   </p>
-               <input id="add-date" type="text">
-               <p>Group Name</p>
-               <input id="add-group" type="text">
-               <p>Description</p>
-               <input id="add-description" type="text">
-               <button data-event-add class="add-event">Add Event</button>
-               <p>Search Event</p>
-               <p>Date ex   12/28/2021   </p>
-               <input id="find-date" type="text">
-               <p>Group Name</p>
-               <input id="find-group" type="text">
-               <p>Description</p>
-               <input id="find-description" type="text">
-               <p>Change Event</p>
-               <p>Date ex   12/28/2021   </p>
-               <input id="change-date" type="text">
-               <p>Change Group</p>
-               <input id="change-group" type="text">
-               <p>Change Description</p>
-               <input id="change-description" type="text">
-               <button data-event-delete class="add-event">Delete Event</button>
-               <button data-event-change class="add-event">Change Event</button>
-            </div>
-         </div>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{% static 'syllabi_reader/calendar.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      {% if error_message %}
+      <div class="error-notice">
+        <div class="oaerror danger">
+          <strong>Error</strong>- {{ error_message}}
+        </div>
       </div>
-      <script src="{% static 'syllabi_reader/calendar.js' %}"></script>
-
-   </body>
+      {% endif %}
+      <div class="calendar">
+        <div class="month">
+          <i class="fas fa-angle-left prev"></i>
+          <div class="export">Export</div>
+          <div class="date">
+            <h1></h1>
+            <div class="year"></div>
+            <p></p>
+          </div>
+          <div class="import">
+            <form
+              action="{% url 'syllabi_reader:read_docx' %}"
+              method="post"
+              enctype="multipart/form-data"
+              id="file_form"
+            >
+              {% csrf_token %} Import:
+              <button class="button">{{ form }}</button>
+            </form>
+          </div>
+          <i class="fas fa-angle-right next"></i>
+        </div>
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+        <div class="days" data-modal-target="#modal">
+          <p></p>
+        </div>
+      </div>
+      <div class="modal" id="modal">
+        <div class="modal-header">
+          <div id="title"></div>
+          <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+    <script src="{% static 'syllabi_reader/calendar.js' %}"></script>
+  </body>
 </html>
