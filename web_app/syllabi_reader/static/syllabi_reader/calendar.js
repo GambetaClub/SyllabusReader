@@ -154,7 +154,7 @@ openModalButtons.forEach(button => {
         let dailyEvents = ""
         let eventFound = false
         eventArray.forEach(function(event, index) {
-            if(event.getDate(1) == text[2] && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
+            if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                 eventFound = true
                 //generates the textboxes and buttons for the specified event
                 dailyEvents += `<div class="event-section">
@@ -211,7 +211,7 @@ openModalButtons.forEach(button => {
             saveEventButton.forEach(button => {
                 button.addEventListener('click', () => {
                     eventArray.forEach(function(event, index) {
-                        if(event.getDate(1) == text[2] && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
+                        if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                             event.setDate(document.getElementById("date"+index).value)
                             event.setGroup(document.getElementById("group"+index).value)
                             event.setDescription(document.getElementById("description"+index).value)
@@ -246,16 +246,6 @@ function closeModal(modal) {
 function addNewEvent(date, group, description, array) {
     let event = new CalendarEvent(date, group, description);
     array.push(event);
-}
-
-function findEvent(date, group, description, array) {
-    let index
-    array.forEach(function(item, i) {
-        if(item.getDate(0)==date[0] && ((item.getDate(1)==date[1] && item.getDate(2)==date[2]) && (item.getGroup()==group && item.getDescription()==description))) {
-            index = i;
-        }
-    })
-    return index;
 }
 
 function deleteEvent(index, array) {
