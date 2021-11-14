@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,8 +14,14 @@
          />
    </head>
    <body>
-      {{ error_message }}
       <div class="container">
+         {% if error_message %}
+         <div class="error-notice">
+            <div class="oaerror danger">
+              <strong>Error</strong>- {{ error_message}}
+            </div>
+         </div>
+      {% endif %}
          <div class="calendar">
             <div class="month">
                <i class="fas fa-angle-left prev"></i>
@@ -25,7 +32,7 @@
                   <p></p>
                </div>
                <div class="import">
-                  <form action="{% url 'index' %}" method="post" enctype="multipart/form-data" id="file_form">
+                  <form action="{% url 'syllabi_reader:read_docx' %}" method="post" enctype="multipart/form-data" id="file_form">
                      {% csrf_token %}
                      Import:
                   <button class="button">
@@ -81,5 +88,6 @@
          </div>
       </div>
       <script src="{% static 'syllabi_reader/calendar.js' %}"></script>
+
    </body>
 </html>

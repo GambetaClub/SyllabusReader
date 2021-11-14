@@ -8,7 +8,7 @@ class CalendarEvent {
     }
    
     setDate(date) {
-        let dateArray = date.split('/')
+        let dateArray = date.toString().split('/');
         dateArray[0] = dateArray[0] - 1;
         this.date = dateArray;
     }
@@ -213,14 +213,14 @@ deleteEventButton.forEach(button => {
         date[0] = date[0]-1;
         console.log("delete: " + date)
         const group = document.getElementById("find-group").value
-        console.log("delete: "+ group)
+        console.log("delete: " + group)
         const description = document.getElementById("find-description").value
-        console.log("delte: "+description)
+        console.log("delete: " + description)
         let index = findEvent(date, group, description, eventArray)
         console.log(index)
         if(index != null) {
             deleteEvent(index, eventArray)
-            renderCalendar(eventArray);
+            renderCal
             const modal = button.closest('.modal')
             closeModal(modal)
         }
@@ -247,8 +247,48 @@ changeEventButton.forEach(button => {
     })
 })
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("file_input").onchange = function() {
-        document.getElementById("file_form").submit();
-    };
+// It accepts a dictionary an iterates through its elements
+function handleResponse(obj) {  
+    // Counting the number of events in the JSON object
+    let numEvents = 0
+    for (let key of Object.keys(obj)) {
+        for (let number of Object.keys(obj[key])){
+            numEvents++
+        }
+        if (numEvents != 0) { break }
+    }
+    // For each event in the JSON object create a new event and
+    // append it to the event array.
+    for(let i = 0; i < numEvents; i++){
+        let eventAssignment = obj["Assignments"][i]
+        let eventDate = obj["Date"][i]
+        addNewEvent(eventDate, "No group", eventAssignment, eventArray)
+    }
+    console.log(eventArray)
+    renderCalendar(eventArray);
+}
+
+$('#file_form').change(function(e){
+    var form_data = new FormData();
+    var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
+    form_data.append('file', $('#file_input')[0].files[0]);    
+    
+    $.ajax({
+        type:'POST',
+        url:'/read_docx',
+        headers: {'X-CSRFToken': token},
+        processData: false,
+        contentType: false,
+        datatype: 'json',
+        async: false,
+        cache: false,
+        data : form_data,
+        success: function(response){
+            handleResponse(response)
+        },
+        error: function(response){
+            console.log("Something went wrong: " + response)
+        }
+    });
+    e.preventDefault();
 });
