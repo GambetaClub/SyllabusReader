@@ -1,0 +1,1503 @@
+{
+  "id": "a12d5105-c244-4916-8f12-7413d2985cfb",
+  "version": "2.0",
+  "name": "Syllabus_Reader1",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "604f62f0-4464-43fa-b2f8-c1c1defedabe",
+    "name": "Adding Event",
+    "commands": [{
+      "id": "388d0f7d-e41e-49c4-838b-4ebc6f667b45",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5831d084-4e1e-4f03-b748-167b8e6cdb12",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1347x1017",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3567ea77-7297-4d7f-9f2e-3e689d1e5909",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\31 3",
+      "targets": [
+        ["css=.\\31 3", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[14]", "xpath:idRelative"],
+        ["xpath=//div[14]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "895778da-1999-42ae-85f9-ded82eb48c82",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2caa5768-29c4-45f3-a422-483412daa88e",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "ed01ac1a-ebbd-4c09-8d49-f9a09bc8e1db",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "49ed8d1f-6a2d-4877-be37-c5fc43aff1c1",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "description1"
+    }, {
+      "id": "4c4554e8-6753-47e5-b3c7-6349708a8742",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6c1faeb9-8541-4633-87ea-695f15a1f503",
+      "comment": "",
+      "command": "//mouseOver",
+      "target": "id=add-event",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "12b496ff-67b9-443b-9db9-a821cb0c8c33",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4cedd046-04e9-40f4-a0fe-c7c761c1e6f1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\31 4",
+      "targets": [
+        ["css=.\\31 4", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[15]", "xpath:idRelative"],
+        ["xpath=//div[15]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7f82e03-b2f0-489b-bf3e-8923a5ba0569",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "adb9edaf-bbf0-46ff-bbe8-ea86b35c9a4d",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "group2"
+    }, {
+      "id": "08ca185b-bc4b-4dc5-aa44-e1de0e5dc5f3",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "011dac8c-61e8-4e72-9ae2-f66cf492aca3",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "description2"
+    }, {
+      "id": "79a3e0f8-d299-453d-8156-2e6396676e36",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed749117-b5a2-41c2-b87a-c74b37c93753",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "635e7399-0a12-4414-961c-ce84d79bf029",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\31 3",
+      "targets": [
+        ["css=.\\31 3", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[14]", "xpath:idRelative"],
+        ["xpath=//div[14]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5c64c7dd-262a-4c1a-ba96-90df33bf7ca8",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54f130b4-7eca-4602-b7ae-06fdd5e99d6d",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": "description"
+    }, {
+      "id": "4dfae7e4-9004-4560-822d-a7928f7d26c6",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18321e54-c1e2-45df-8355-83e30f594a4e",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": "description3"
+    }, {
+      "id": "1e6c47c4-5a3f-4017-aec1-cd8d7f57fef8",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e241723e-8ba7-406b-a66f-19232892e47b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\31 3",
+      "targets": [
+        ["css=.\\31 3", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[14]", "xpath:idRelative"],
+        ["xpath=//div[14]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d6a4e01-0677-4e25-8e9d-a09183b5fdcb",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4aa8f5a1-0d30-460b-9cd8-aa8201b1088a",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "bd9eaa9a-8193-4b41-a4bf-4e02cd8b8b63",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50ee4295-c67c-4088-a89a-64cf9a6e55b8",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": "description4"
+    }, {
+      "id": "5eb7a9c0-918c-474e-8f9b-15e5aa3aa61c",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "54c8501c-ec5f-4ed7-8d9e-b15b3bd4005e",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "8f24f099-4ef9-4aa6-bbfd-f9e97f1f3999",
+    "name": "Changing Events",
+    "commands": [{
+      "id": "59fb3847-9414-4744-bb77-4fb03acfa254",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7df1d013-582f-49f3-ac17-e62904cc3391",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1347x1017",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b9050bd5-e439-415a-903d-a2cc7d91da9a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "29400e5d-bb12-4d5b-90ee-6a3d1f23f1f7",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9dee7a4c-a6ba-4b49-95df-247e66b782c3",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "0c1dd40a-9fc5-41a8-b905-ed2666a7754c",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ba6001d-2d14-4a26-b28f-b479a96be6cd",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "description11"
+    }, {
+      "id": "26be19ad-ade7-4f58-820b-90d17b796d68",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "202c20d0-cc23-4560-b2c3-e162fb49260e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1db8665b-631f-42c5-9e7d-df9d54c47ace",
+      "comment": "",
+      "command": "click",
+      "target": "id=description0",
+      "targets": [
+        ["id=description0", "id"],
+        ["css=#description0", "css:finder"],
+        ["xpath=//input[@id='description0']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22c6ac0f-6eb7-4ec4-8f8a-b0a2cc00e6f4",
+      "comment": "",
+      "command": "type",
+      "target": "id=description0",
+      "targets": [
+        ["id=description0", "id"],
+        ["css=#description0", "css:finder"],
+        ["xpath=//input[@id='description0']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "descriptio"
+    }, {
+      "id": "ad10f96c-f107-4a62-8627-d40b5b62ed9e",
+      "comment": "",
+      "command": "click",
+      "target": "id=save-events",
+      "targets": [
+        ["id=save-events", "id"],
+        ["css=#save-events", "css:finder"],
+        ["xpath=//button[@id='save-events']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Events')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "655abf06-b4b2-4eab-af33-2957b8d015e3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "681fa808-6b6b-4d13-8d40-b59e75a1fb3c",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33c69890-15af-4f31-915e-297489a429a3",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Group"
+    }, {
+      "id": "7ff9a358-b196-4f51-a39e-508e83d283dd",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8784d1ca-25f4-4650-94fd-ebb371d195d5",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": "description11"
+    }, {
+      "id": "65de6b3a-f20d-4168-9477-4babbd6e3882",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bb9c977c-866c-432e-84c4-6cdfa82402f1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "969ee01b-bfb6-4586-86b3-d1a0adccc604",
+      "comment": "",
+      "command": "click",
+      "target": "id=description0",
+      "targets": [
+        ["id=description0", "id"],
+        ["css=#description0", "css:finder"],
+        ["xpath=//input[@id='description0']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe0693c7-33db-4bb8-8180-18b9200e6104",
+      "comment": "",
+      "command": "type",
+      "target": "id=description0",
+      "targets": [
+        ["id=description0", "id"],
+        ["css=#description0", "css:finder"],
+        ["xpath=//input[@id='description0']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "descrip"
+    }, {
+      "id": "fcc2933b-31f8-42b3-9ca9-8ab5295103f3",
+      "comment": "",
+      "command": "click",
+      "target": "id=save-events",
+      "targets": [
+        ["id=save-events", "id"],
+        ["css=#save-events", "css:finder"],
+        ["xpath=//button[@id='save-events']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/button", "xpath:idRelative"],
+        ["xpath=//body/div/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Events')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b49824c-d866-4eba-8bb1-f6c6f6de8fa8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbdd710b-435c-40e5-b967-b68f17899814",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f331aad5-4137-460e-98f5-64e25cf6f2d5",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[2]", "xpath:position"]
+      ],
+      "value": "group1"
+    }, {
+      "id": "c103d3fd-37b9-4993-8853-532835a2f5b5",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e4b748f-ad3a-4dbc-b718-d703ac434b03",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": "description44"
+    }, {
+      "id": "02f4d77e-36ed-465e-8f1b-57a76f870f6d",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2201ca1-a319-456c-85be-f946f4e802cc",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe65acfc-044c-4d23-9d62-4556d6f9cefb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c03135aa-b70b-4878-980f-3d33909ee5db",
+      "comment": "",
+      "command": "click",
+      "target": "id=description2",
+      "targets": [
+        ["id=description2", "id"],
+        ["css=#description2", "css:finder"],
+        ["xpath=//input[@id='description2']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3865e436-c4f6-4047-b164-0f38ce6765c0",
+      "comment": "",
+      "command": "type",
+      "target": "id=description2",
+      "targets": [
+        ["id=description2", "id"],
+        ["css=#description2", "css:finder"],
+        ["xpath=//input[@id='description2']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": "descrip"
+    }, {
+      "id": "01789ebd-8e3f-48d5-a48a-4ffb0edb9e96",
+      "comment": "",
+      "command": "click",
+      "target": "id=description1",
+      "targets": [
+        ["id=description1", "id"],
+        ["css=#description1", "css:finder"],
+        ["xpath=//input[@id='description1']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52448789-43f0-452b-8d85-e836c6e4eaf2",
+      "comment": "",
+      "command": "type",
+      "target": "id=description1",
+      "targets": [
+        ["id=description1", "id"],
+        ["css=#description1", "css:finder"],
+        ["xpath=//input[@id='description1']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": "descripti"
+    }, {
+      "id": "30bb1671-7c6c-4490-b7af-91d6a1153191",
+      "comment": "",
+      "command": "click",
+      "target": "id=save-events",
+      "targets": [
+        ["id=save-events", "id"],
+        ["css=#save-events", "css:finder"],
+        ["xpath=//button[@id='save-events']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/button", "xpath:idRelative"],
+        ["xpath=//body/div/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Events')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5509c6e2-c6c6-487e-9e84-74a2aa8e401c",
+    "name": "Deleting Events",
+    "commands": [{
+      "id": "40f29cb7-ad98-472a-b0e4-33f6c293bacd",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ef2a13ae-cf38-4ea5-bc0e-cbd3018a226d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1347x1017",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2e44e372-7737-4dd1-a864-06894dffaf11",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "707c284f-2087-44dd-9007-50175737a158",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a94a0daf-74ef-41ae-a230-2a792bfdb2b0",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "c7ff5b2d-1fc0-4476-930f-7228394e7c51",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b13e30a-00a4-45d9-830f-64ab87735d60",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "delete"
+    }, {
+      "id": "bec58b8c-1204-433a-92b5-c72561ab6e48",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3dc2cda-adf4-45f4-b08e-8f9e79ce9a92",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "572988ca-ffda-40ea-b249-8abd588c5e4f",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-event0",
+      "targets": [
+        ["id=delete-event0", "id"],
+        ["css=#delete-event0", "css:finder"],
+        ["xpath=//button[@id='delete-event0']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ba54dbc-0c16-45ea-b80e-c7752644e4b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09582ade-519c-43ec-8515-d911b5e46f0a",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "818d64eb-6fc4-4e86-992a-8f622ef592fb",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "8a2ef9c7-4703-4865-ac4b-cc080107a0cd",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "76d5d9e2-93e0-4e83-8b8a-54eda5481cae",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "delete1"
+    }, {
+      "id": "df78e1bb-9a85-4112-92eb-87ebf855b24e",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "159404c5-e2fe-4fa6-b11f-78b1cc8f29f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc891d6a-98c9-4e66-85c5-f276a0cecb6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30911d64-13f1-4655-a97d-445e22f520a7",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "84d9a062-6ce8-46bb-80b8-1c494991780f",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa84a6be-a76d-4d3d-8755-b893b5f44f7d",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": "delete2"
+    }, {
+      "id": "8ed63176-1ea8-4a91-9722-5553e97071aa",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ca549bc-60c1-44c2-8eec-3317a130bfc9",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "94a348d3-cc62-45e1-8e47-8b300ebc322c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "04520c71-3967-4829-9a09-4dc0ab116f93",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc2b03a3-6b15-4466-b343-16937ed6c7cc",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "7ad7e1f9-e5be-4666-9c3a-c3d9f49f315d",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0f08752-95c0-4ebe-b5f4-1fbb41733c55",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/input[3]", "xpath:position"]
+      ],
+      "value": "delete3"
+    }, {
+      "id": "fe9c3dd3-07f1-47a3-9e88-deb49919fd6a",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "675d19f3-7eda-46f1-8646-c441d7495233",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ed577b4-916b-45cc-b132-4974d64c9e17",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "151df6b1-e520-44cd-8e50-31bc1df15e91",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-event1",
+      "targets": [
+        ["id=delete-event1", "id"],
+        ["css=#delete-event1", "css:finder"],
+        ["xpath=//button[@id='delete-event1']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2dd180d7-ef72-4cb1-b153-3c1b1fe577d3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0dd3a963-93c7-40a7-a65e-64a884da7ad3",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-event1",
+      "targets": [
+        ["id=delete-event1", "id"],
+        ["css=#delete-event1", "css:finder"],
+        ["xpath=//button[@id='delete-event1']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1dddf6a3-fed1-4a99-9d8b-0f4a33240464",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\36",
+      "targets": [
+        ["css=.\\36", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[7]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbf94e18-0812-4d9e-bf94-f4eca35aa1fb",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-event0",
+      "targets": [
+        ["id=delete-event0", "id"],
+        ["css=#delete-event0", "css:finder"],
+        ["xpath=//button[@id='delete-event0']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "055c8a60-58bf-430d-9993-3bb6520d233b",
+    "name": "Adding Good Syllabus",
+    "commands": [{
+      "id": "f523d040-c779-4fa6-af00-871ea4b4517b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4d9f0807-51e6-46c0-921b-6061507c295e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1347x1017",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d56c87aa-95e2-425f-a2e4-9410cb517772",
+      "comment": "",
+      "command": "click",
+      "target": "id=file_input",
+      "targets": [
+        ["id=file_input", "id"],
+        ["name=file", "name"],
+        ["css=#file_input", "css:finder"],
+        ["xpath=//input[@id='file_input']", "xpath:attributes"],
+        ["xpath=//form[@id='file_form']/button/input", "xpath:idRelative"],
+        ["xpath=//button/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9441275-9b4e-48b2-a9fe-14684ee6170e",
+      "comment": "",
+      "command": "type",
+      "target": "id=file_input",
+      "targets": [
+        ["id=file_input", "id"],
+        ["name=file", "name"],
+        ["css=#file_input", "css:finder"],
+        ["xpath=//input[@id='file_input']", "xpath:attributes"],
+        ["xpath=//form[@id='file_form']/button/input", "xpath:idRelative"],
+        ["xpath=//button/input", "xpath:position"]
+      ],
+      "value": "C:\\fakepath\\Syllabus1.docx"
+    }, {
+      "id": "da816f95-efd3-4f44-99e5-d551a0f521e5",
+      "comment": "",
+      "command": "click",
+      "target": "id=description9",
+      "targets": [
+        ["id=description9", "id"],
+        ["css=#description9", "css:finder"],
+        ["xpath=//input[@id='description9']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "639477a6-bde9-4471-ac74-328dcd973b4d",
+      "comment": "",
+      "command": "type",
+      "target": "id=description9",
+      "targets": [
+        ["id=description9", "id"],
+        ["css=#description9", "css:finder"],
+        ["xpath=//input[@id='description9']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "media/docx/Syllacx - Quiz"
+    }, {
+      "id": "f00f38ef-1071-4c3c-9a21-29a4cb467bf8",
+      "comment": "",
+      "command": "click",
+      "target": "id=save-events",
+      "targets": [
+        ["id=save-events", "id"],
+        ["css=#save-events", "css:finder"],
+        ["xpath=//button[@id='save-events']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Events')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bd20c15-7531-421b-9ea2-8a5e59c3d843",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\31 8",
+      "targets": [
+        ["css=.\\31 8", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[19]", "xpath:idRelative"],
+        ["xpath=//div[19]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a056b348-1791-47f3-a059-e179bf1c9854",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-event11",
+      "targets": [
+        ["id=delete-event11", "id"],
+        ["css=#delete-event11", "css:finder"],
+        ["xpath=//button[@id='delete-event11']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1830ee5d-ab08-435e-a961-4e14a25587c6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\32",
+      "targets": [
+        ["css=.\\32", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6e08f4b-e6f5-49a3-aecd-4fe43f6e1e8b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.event-section:nth-child(3)",
+      "targets": [
+        ["css=.event-section:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='modal-body']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ffc494f-87da-4f62-bc69-d6f6e9d2fed5",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9aad9f3b-a664-4db1-b9d8-fff060e09baa",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-group",
+      "targets": [
+        ["id=add-group", "id"],
+        ["css=#add-group", "css:finder"],
+        ["xpath=//input[@id='add-group']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[2]", "xpath:position"]
+      ],
+      "value": "group"
+    }, {
+      "id": "152a46e0-3760-48ef-a452-840a9311e349",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8fdfc688-5715-4f2a-a8cc-c1416ffbb42c",
+      "comment": "",
+      "command": "type",
+      "target": "id=add-description",
+      "targets": [
+        ["id=add-description", "id"],
+        ["css=#add-description", "css:finder"],
+        ["xpath=//input[@id='add-description']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//div[2]/input[3]", "xpath:position"]
+      ],
+      "value": "descriptionww"
+    }, {
+      "id": "54436d35-6b5e-4ff7-9e10-d35986aded0f",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-event",
+      "targets": [
+        ["id=add-event", "id"],
+        ["css=#add-event", "css:finder"],
+        ["xpath=//button[@id='add-event']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "19655e72-b1c5-4d59-bca1-88a036b7d26a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.\\32",
+      "targets": [
+        ["css=.\\32", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffec3813-d208-432f-93ad-4d0a7656a253",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-event8",
+      "targets": [
+        ["id=delete-event8", "id"],
+        ["css=#delete-event8", "css:finder"],
+        ["xpath=//button[@id='delete-event8']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-body']/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete Event')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "a5613ba2-1296-4c8e-a35e-3424d81ad8fd",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
