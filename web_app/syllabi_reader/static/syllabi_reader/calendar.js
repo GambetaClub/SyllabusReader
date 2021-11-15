@@ -12,7 +12,9 @@ class CalendarEvent {
     setDate(date) {
         let dateArray = date.split('/')
         dateArray[0] = dateArray[0] - 1;
-        this.date = dateArray;
+        if(validDate(dateArray)) {
+            this.date = dateArray;
+        }
     }
 
     setGroup(group) {
@@ -33,6 +35,23 @@ class CalendarEvent {
 
     getDescription() {
         return this.description;
+    }
+
+    validDate(date) {
+        if(date.length != 3) {
+            console.log("date did not have 3 parts")
+            return false
+        }
+        if(date[0] < 0 || date[0] > 11) {
+            console.log("month was less than 1 and greater than 12")
+            return false
+        }
+        if(date[1] > 1 || date[1] < new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay()) {
+            console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay() + " was not equal to the value entered")
+            return false
+        }
+        console.log("no issue was found with the date")
+        return true
     }
     
 }
@@ -260,6 +279,8 @@ function changeEvent(date, group, description, index, array) {
         array[index].setGroup(group)
         array[index].setDescription(description)
 }
+
+
 
 const createEventButton = document.querySelectorAll("[data-event-add]")
 const deleteEventButton = document.querySelectorAll("[data-event-delete]")
