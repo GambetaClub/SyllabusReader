@@ -120,6 +120,7 @@ body {
   padding-left: 0.5rem;
   word-wrap: break-word;
   pointer-events: none;
+  overflow-y: auto;
 }
 
 .days div:hover:not(.today) {
