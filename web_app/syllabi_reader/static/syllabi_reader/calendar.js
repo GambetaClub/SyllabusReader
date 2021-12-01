@@ -5,8 +5,8 @@ class CalendarEvent {
 
     constructor(date, group, description) {
         this.setDate(date)
-        this.setGroup(group);
-        this.setDescription(description);
+        this.setGroup(group)
+        this.setDescription(description)
     }
    
     setDate(date) {
@@ -18,23 +18,23 @@ class CalendarEvent {
     }
 
     setGroup(group) {
-        this.group = group;
+        this.group = group
     }
 
     setDescription(description) {
-        this.description = description;
+        this.description = description
     }
 
     getDate(index) {
-        return this.date[index];
+        return this.date[index]
     }
 
     getGroup() {
-        return this.group;
+        return this.group
     }
 
     getDescription() {
-        return this.description;
+        return this.description
     }
 
     validDate(date) {
@@ -58,8 +58,8 @@ class CalendarEvent {
 
 
 //constants used for rendering the calendar
-const date = new Date();
-const importButton = document.querySelector('.import');
+const date = new Date()
+const importButton = document.querySelector('.import')
 const months = [
     "January",
     "February",
@@ -73,33 +73,33 @@ const months = [
     "October",
     "November",
     "December",
-];
+]
 
 //renders the calendar
 const renderCalendar = (eventArray) => {
     
-    date.setDate(1);
+    date.setDate(1)
 
-    const monthDays = document.querySelector('.days');
+    const monthDays = document.querySelector('.days')
 
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
-    const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+    const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate()
 
-    const firstDayIndex = date.getDay();
+    const firstDayIndex = date.getDay()
 
-    const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
+    const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay()
 
-    const nextDays = 7 - lastDayIndex - 1;
+    const nextDays = 7 - lastDayIndex - 1
 
     //displays the information in the header
-    document.querySelector('.date h1').innerHTML = months[date.getMonth()];
+    document.querySelector('.date h1').innerHTML = months[date.getMonth()]
 
-    document.querySelector('.year').innerHTML = date.getFullYear();
+    document.querySelector('.year').innerHTML = date.getFullYear()
 
-    document.querySelector('.date p').innerHTML = new Date().toDateString();
+    document.querySelector('.date p').innerHTML = new Date().toDateString()
 
-    let days = "";
+    let days = ""
 
     for(let x = firstDayIndex; x > 0; x--){
         days += `<div class = "prev-date">${prevLastDay - x + 1}</div>`
@@ -107,65 +107,65 @@ const renderCalendar = (eventArray) => {
 
     //builds and displays the days for the month
     for(let i = 1; i <= lastDay; i++){
-        let dailyEvents = "";
+        let dailyEvents = ""
         //true if its todays date
         if(i === new Date().getDate() && (date.getMonth() === new Date().getMonth()) && date.getFullYear() === new Date().getFullYear()) {
             //loops through the event array
             eventArray.forEach(function(event) {
                 //true if the event matches todays date
                 if(event.getDate(1) == i && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
-                        dailyEvents += event.getDescription() + "<br>";
+                        dailyEvents += event.getDescription() + "<br>"
                 }
             })
-            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i} today">${i + " " + `<p>${dailyEvents}</p>`}</div>`;
+            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i} today">${i + " " + `<p>${dailyEvents}</p>`}</div>`
             
         }else{
             //loops through the events array
             eventArray.forEach(function(event) {
                 //true if the event date matches the current date of the for loop
                 if(event.getDate(1) == i && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
-                    dailyEvents += event.getDescription() + "<br>";
+                    dailyEvents += event.getDescription() + "<br>"
                 }
             })
-            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i}">${i + " " + `<p>${dailyEvents}</p>`}</div>`;
+            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i}">${i + " " + `<p>${dailyEvents}</p>`}</div>`
         }
     }
 
     for(let j = 1; j <= nextDays; j++){
-        days += `<div class = "next-date">${j}</div>`;
+        days += `<div class = "next-date">${j}</div>`
     }
-    monthDays.innerHTML = days;
+    monthDays.innerHTML = days
 
 }
 
 //Array used to store the events which will display on the calendar
-let eventArray = [];
+let eventArray = []
 
 //checks for a click on the next and previous month arrows
 document.querySelector('.prev').addEventListener('click', () => {
-    date.setMonth(date.getMonth() - 1);
-    renderCalendar(eventArray);
-});
+    date.setMonth(date.getMonth() - 1)
+    renderCalendar(eventArray)
+})
 
 document.querySelector('.next').addEventListener('click', () => {
-    date.setMonth(date.getMonth() + 1);
-    renderCalendar(eventArray);
-});
+    date.setMonth(date.getMonth() + 1)
+    renderCalendar(eventArray)
+})
 
 //creates the calendar
-renderCalendar(eventArray);
+renderCalendar(eventArray)
 
 
 //popup when clicking on a day
-const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const openModalButtons = document.querySelectorAll("[data-modal-target]")
 const closeModalButtons = document.querySelectorAll("[data-close-button]")
 
 //opens whenever a day is clicked on
 openModalButtons.forEach(button => {
     button.addEventListener('click', function(e) {
-        e = e || window.event;
+        e = e || window.event
         let target = e.target
-        let text = target.classList;
+        let text = target.classList
         const modal = document.querySelector(button.dataset.modalTarget)
         document.getElementById("title").innerHTML = text[1] + " " + text[2] + ", " + text[0]
 
@@ -202,11 +202,10 @@ openModalButtons.forEach(button => {
                             <input id="add-description" type="text"/>
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
-        document.getElementById("modal-body").innerHTML = dailyEvents;
+        document.getElementById("modal-body").innerHTML = dailyEvents
 
         //section that actually opens the modal
         if(text[0] != "next-date" && text[0] != "prev-date" && text[0] != "days") {
-            console.log(text)
             openModal(modal)
 
             const createEventButton = document.querySelectorAll("[data-event-add]")
@@ -215,13 +214,10 @@ openModalButtons.forEach(button => {
             createEventButton.forEach(button => {
                 button.addEventListener('click', () => {
                     const date = document.getElementById("add-date").value
-                    console.log(date)
                     const group = document.getElementById("add-group").value
-                    console.log(group)
                     const description = document.getElementById("add-description").value
-                    console.log(description)
                     addNewEvent(date, group, description, eventArray)
-                    renderCalendar(eventArray);
+                    renderCalendar(eventArray)
                     const modal = button.closest('.modal')
                     closeModal(modal)
                 })
@@ -234,7 +230,7 @@ openModalButtons.forEach(button => {
                             event.setDate(document.getElementById("date"+index).value)
                             event.setGroup(document.getElementById("group"+index).value)
                             event.setDescription(document.getElementById("description"+index).value)
-                            renderCalendar(eventArray);
+                            renderCalendar(eventArray)
                             const modal = button.closest('.modal')
                             closeModal(modal)
                         }
@@ -242,7 +238,7 @@ openModalButtons.forEach(button => {
                 })
             })
         }
-    }, false);
+    }, false)
 })
 
 closeModalButtons.forEach(button => {
@@ -250,27 +246,26 @@ closeModalButtons.forEach(button => {
         const modal = button.closest('.modal')
         closeModal(modal)
     })
-});
+})
 
 function openModal(modal) {
-    if (modal == null) return;
+    if (modal == null) return
     modal.classList.add('active')
 }
 
 function closeModal(modal) {
-    if (modal == null) return;
+    if (modal == null) return
     modal.classList.remove('active')  
 }
 
 function addNewEvent(date, group, description, array) {
-    let event = new CalendarEvent(date, group, description);
-    array.push(event);
+    let event = new CalendarEvent(date, group, description)
+    array.push(event)
 }
 
 function deleteEvent(index, array) {
-    console.log(index)
     array.splice(index, 1)
-    renderCalendar(eventArray);
+    renderCalendar(eventArray)
     closeModal(document.getElementsByClassName("modal")[0])
 }
 
@@ -292,7 +287,7 @@ createEventButton.forEach(button => {
         const group = document.getElementById("add-group").value
         const description = document.getElementById("add-description").value
         addNewEvent(date, group, description, eventArray)
-        renderCalendar(eventArray);
+        renderCalendar(eventArray)
         const modal = button.closest('.modal')
         closeModal(modal)
     })
@@ -301,7 +296,7 @@ createEventButton.forEach(button => {
 deleteEventButton.forEach(button => {
     button.addEventListener('click', () => {
         let date = document.getElementById("find-date").value.split('/')
-        date[0] = date[0]-1;
+        date[0] = date[0]-1
         const group = document.getElementById("find-group").value
         const description = document.getElementById("find-description").value
         let index = findEvent(date, group, description, eventArray)
@@ -317,7 +312,7 @@ deleteEventButton.forEach(button => {
 changeEventButton.forEach(button => {
     button.addEventListener('click', () => {
         let findDate = document.getElementById("find-date").value.split('/')
-        findDate[0] = findDate[0]-1;
+        findDate[0] = findDate[0]-1
         const findGroup = document.getElementById("find-group").value
         const findDescription = document.getElementById("find-description").value
         let index = findEvent(findDate, findGroup, findDescription, eventArray)
@@ -325,13 +320,14 @@ changeEventButton.forEach(button => {
             let changeDate = document.getElementById("change-date").value
             const changeGroup = document.getElementById("change-group").value
             const changeDescription = document.getElementById("change-description").value
-            changeEvent(changeDate, changeGroup, changeDescription, index, eventArray);
-            renderCalendar(eventArray);
+            changeEvent(changeDate, changeGroup, changeDescription, index, eventArray)
+            renderCalendar(eventArray)
             const modal = button.closest('.modal')
             closeModal(modal)
         }
     })
 })
+
 
 // It accepts a dictionary an iterates through its elements
 function handleResponse(obj) {  
@@ -350,18 +346,19 @@ function handleResponse(obj) {
         let eventDate = obj["Date"][i]
         addNewEvent(eventDate, "No group", eventAssignment, eventArray)
     }
-    renderCalendar(eventArray);
+    renderCalendar(eventArray)
+    $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
 }
 
 function handleError(errorMessage) {
     // Show dismissible error message
-    $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+    $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
 }
 
 $('#file_form').change(function(e){
-    var form_data = new FormData();
+    var form_data = new FormData()
     var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
-    form_data.append('file', $('#file_input')[0].files[0]);    
+    form_data.append('file', $('#file_input')[0].files[0])    
     
     $.ajax({
         type:'POST',
@@ -377,8 +374,27 @@ $('#file_form').change(function(e){
             handleResponse(data)
         },
         error:function(data){
-            handleError(data.statusText);
+            handleError(data.statusText)
         } 
-    });
-    e.preventDefault();
-});
+    })
+    e.preventDefault()
+})
+
+
+function saveCalendar(){
+    var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
+    events = JSON.stringify(eventArray)
+    
+    $.ajax({
+        type:'POST',
+        url:'/save_calendar',
+        headers: {'X-CSRFToken': token},
+        datatype: 'json',
+        data : {
+            'events': events
+        },
+    })
+    .done(function(msg) {
+        alert("Data saved " + msg)
+    })
+}
