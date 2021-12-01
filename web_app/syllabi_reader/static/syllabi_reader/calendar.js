@@ -150,6 +150,7 @@ openModalButtons.forEach(button => {
         let text = target.classList
         const modal = document.querySelector(button.dataset.modalTarget)
         document.getElementById("title").innerHTML = text[1] + " " + text[2] + ", " + text[0]
+        console.log("Getting title: " + text[1] + " " + text[2] + ", " + text[0])
 
         //generates the text boxes and buttons on the popup for the specified day based on the events on that day
         let dailyEvents = ""
@@ -185,9 +186,12 @@ openModalButtons.forEach(button => {
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
         document.getElementById("modal-body").innerHTML = dailyEvents
+        console.log("text 1: " + text[1])
+        console.log("getting date for text box: " + (months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0])
 
         //section that actually opens the modal
         if(text[0] != "next-date" && text[0] != "prev-date" && text[0] != "days") {
+            console.log(text)
             openModal(modal)
 
             const createEventButton = document.querySelectorAll("[data-event-add]")
@@ -196,8 +200,11 @@ openModalButtons.forEach(button => {
             createEventButton.forEach(button => {
                 button.addEventListener('click', () => {
                     const date = document.getElementById("add-date").value
+                    console.log(date)
                     const group = document.getElementById("add-group").value
+                    console.log(group)
                     const description = document.getElementById("add-description").value
+                    console.log(description)
                     addNewEvent(date, group, description, eventArray)
                     renderCalendar(eventArray)
                     const modal = button.closest('.modal')
