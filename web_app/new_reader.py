@@ -1,6 +1,7 @@
 import os
 import re
 import dateutil.parser
+import json 
 import pandas as pd
 from docx import Document
 
@@ -90,9 +91,8 @@ class Reader:
 
     def convert_assignments(self, df, filename):
         """
-        Converts the dataframe assignments 
-        values to None if the value is either
-        only spaces or symbol characters. 
+        Converts the dataframe assignments values to None
+        if the value is either only spaces or symbol characters. 
         """
         with pd.option_context('mode.chained_assignment', None):
             df['Assignments'] = df['Assignments'].map(lambda s: self.spec(s))
@@ -102,13 +102,13 @@ class Reader:
 
     def recognize_fields(self, df):
         """
-        Accepts a dataframe and returns 
-        the dataframe only with the fields
-        "Assignments", "Week", and "Date".
+        Accepts a dataframe and returns the dataframe only with the fields
+        "Assignments" and "Date". If the dataframe doesn't contain
+        the fields, it returns an empty dataframe.
         """
         if isinstance(df, pd.DataFrame):
-            if "Assignments" in list(df) or "Week" in list(df) or "Date" in list(df):
-                df = df[["Assignments", "Week", "Date"]]
+            if "Assignments" in list(df) or "Date" in list(df):
+                df = df[["Assignments", "Date"]]
             else:
                 return pd.DataFrame()
         return df
@@ -116,7 +116,7 @@ class Reader:
     def read_docx_table(self, document, n_headers=1):
         """
         Reads a document's tables (docx Document) and returns 
-        a list with dataframes that represent the calendar
+        a with dataframe that represent the calendar
         in the syllabus. If the syllabus doesn't contain 
         any table with the format, it returns None. 
         """ 
@@ -144,9 +144,11 @@ class Reader:
 
 
     def convert_one_docx_to_csv(self, file_path):
-        # Gets a docx file (syllabus) and returns
-        # a dataframe containing its calendar data
-        # f_name = os.path.splitext(file)
+        """
+        Gets a docx file (syllabus) and returns
+        a dataframe containing its calendar data
+        f_name = os.path.splitext(file)
+        """
         
         if file_path.endswith(".docx"):
             document = Document(file_path)
@@ -160,3 +162,30 @@ class Reader:
             return df
         else:
             return None
+
+
+    def parse_json_events(self, str_events): 
+        """
+        Accepts a string representing an array of events.
+        It converts the string to a dataframe in the format 
+        used in the class. It returns the dataframe in the 
+        final format.
+        """
+        events = json.loads(str_events)
+        length = len(events)
+        arr_events = []
+        for i in range(length):
+            assignment = events[i]["description"]
+            date = str(str(events[i]["date"][0]) + '/' + str(events[i]["date"][1]) + '/' + str(events[i]["date"][2]))
+            event = [assignment, date]
+            arr_events.append(event)
+        df = pd.DataFrame(data=arr_events)
+        df = df.rename(columns={0: 'Assignments', 1: 'Date'})
+
+        # The following line prompts an error.
+        # I was trying to use it so the dates would be
+        # formatted the same way the reader does it at the 
+        # time of reading a word document. 
+        # df = self.convert_dates(df)
+        
+        return df

@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import JsonResponse, HttpResponse
@@ -7,6 +8,7 @@ from syllabi_reader.forms import DocumentForm
 from web_app.settings import MEDIA_ROOT
 import re
 import json
+import pandas as pd
 import numpy as np
 
 # from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -34,6 +36,7 @@ def get_calendar_df(filename):
     df = reader.convert_one_docx_to_csv(file_path)
     return df
 
+
 def format_filename(filename):
     """
     Gets and string (filename) and 
@@ -58,7 +61,7 @@ def index(request):
 
 # @csrf_exempt
 def read_docx(request):
-    if request.method == 'POST':
+    if request.is_ajax():
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             file = request.FILES['file']
@@ -80,3 +83,13 @@ def read_docx(request):
             return response
     else:
         return reverse('syllabi_reader:index')
+
+
+def save_calendar(request):
+    if request.method == "POST":
+        events = request.POST.get('events', None)
+        df = reader.parse_json_events(events)
+        print(df)
+        return HttpResponse("The current calendar has been parsed successfully.")
+    else:
+        return HttpResponseRedirect(reverse("index"))
