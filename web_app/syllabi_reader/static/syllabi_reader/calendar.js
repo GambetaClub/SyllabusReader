@@ -144,6 +144,7 @@ const closeModalButtons = document.querySelectorAll("[data-close-button]")
 //opens whenever a day is clicked on
 openModalButtons.forEach(button => {
     button.addEventListener('click', function(e) {
+        console.log("day clicked")
         e = e || window.event
         let target = e.target
         let text = target.classList
