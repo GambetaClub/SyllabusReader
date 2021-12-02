@@ -374,6 +374,6 @@ function saveCalendar(){
         },
     })
     .done(function(msg) {
-        alert("Data saved " + msg)
+        alert(msg)
     })
 }
