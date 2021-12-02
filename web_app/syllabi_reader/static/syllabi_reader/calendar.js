@@ -15,6 +15,7 @@
     //Prevent a bunch of error messages from piling up on the screen
     //Try to clean up files that are not being used and tidy up the code the best we can.
     //Make sure the code properly handles each sylabus
+    //Make it easily accesable (trying to get it on the web) (we may be able to get an exception to this)
 
     //Anything else...
 
