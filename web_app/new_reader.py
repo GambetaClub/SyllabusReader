@@ -195,4 +195,3 @@ class Reader:
     def convert_df_to_csv(self, df):
         if df is not None:
             csv = df.to_csv(f"calendar.csv", encoding='utf-8', index=False)
-

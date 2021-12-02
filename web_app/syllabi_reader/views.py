@@ -21,18 +21,23 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
-def get_calendar_df(filename):
-    """
-    Providing a syllabus name (filename)
-    the function and returns a dataframe with
-    the calendar data of the syllabus.
-    """
+
+def get_file_path(filename):
     dir = MEDIA_ROOT + "/docx"
     if filename.startswith("~$") or not filename.endswith(".docx"):
         return None
     full_path = dir + "/" + filename
     file_ref = open(full_path, "rb")
-    file_path = file_ref.name
+    return file_ref.name
+
+
+def get_calendar_df(filename):
+    """
+    Providing a syllabus name (filename) for a docx file
+    the function and returns a dataframe with
+    the calendar data of the syllabus.
+    """
+    file_path = get_file_path(filename)
     df = reader.convert_one_docx_to_csv(file_path)
     return df
 
@@ -87,9 +92,9 @@ def read_docx(request):
 
 def save_calendar(request):
     if request.method == "POST":
-        events = request.POST.get('events', None)
-        df = reader.parse_json_events(events)
-        print(df)
+        events = request.POST.get('events', None) # Gets a string representing an array of events
+        df = reader.parse_json_events(events) # Parses the string and converts it into a df
+        reader.convert_df_to_csv(df) # It saves the df as csv file
         return HttpResponse("The current calendar has been parsed successfully.")
     else:
         return HttpResponseRedirect(reverse("index"))

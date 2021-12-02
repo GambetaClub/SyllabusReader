@@ -120,6 +120,7 @@ body {
   padding-left: 0.5rem;
   word-wrap: break-word;
   pointer-events: none;
+  overflow-y: auto;
 }
 
 .days div:hover:not(.today) {
@@ -139,7 +140,7 @@ body {
   cursor: pointer;
 }
 
-.modal {
+.event-modal {
   width: 75rem;
   height: 43rem;
   position: absolute;
@@ -154,11 +155,11 @@ body {
   align-items: center;
 }
 
-.modal.active {
+.event-modal.active {
   transform: translate(-50%, 21%) scale(1);
 }
 
-.modal-header {
+.event-modal-header {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -166,13 +167,13 @@ body {
   border-bottom: 0.25rem solid #598d8f;
 }
 
-.modal-header #title {
+.event-modal-header #title {
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
 }
 
-.modal-header .close-button {
+.event-modal-header .close-button {
   cursor: pointer;
   border: none;
   outline: none;
@@ -182,7 +183,7 @@ body {
   color: #598d8f;
 }
 
-#modal-body {
+#event-modal-body {
   padding: 1rem;
   height: 36rem;
   transform: translate(0%, 1%);
