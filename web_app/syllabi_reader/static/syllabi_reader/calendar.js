@@ -185,7 +185,7 @@ openModalButtons.forEach(button => {
                             <input id="add-description" type="text"/>
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
-        document.getElementById("modal-body").innerHTML = dailyEvents
+        document.getElementById("event-modal-body").innerHTML = dailyEvents
         console.log("text 1: " + text[1])
         console.log("getting date for text box: " + (months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0])
 
@@ -207,7 +207,7 @@ openModalButtons.forEach(button => {
                     console.log(description)
                     addNewEvent(date, group, description, eventArray)
                     renderCalendar(eventArray)
-                    const modal = button.closest('.modal')
+                    const modal = button.closest('.event-modal')
                     closeModal(modal)
                 })
             })
@@ -220,7 +220,7 @@ openModalButtons.forEach(button => {
                             event.setGroup(document.getElementById("group"+index).value)
                             event.setDescription(document.getElementById("description"+index).value)
                             renderCalendar(eventArray)
-                            const modal = button.closest('.modal')
+                            const modal = button.closest('.event-modal')
                             closeModal(modal)
                         }
                     })
@@ -232,7 +232,7 @@ openModalButtons.forEach(button => {
 
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const modal = button.closest('.modal')
+        const modal = button.closest('.event-modal')
         closeModal(modal)
     })
 })
@@ -255,7 +255,7 @@ function addNewEvent(date, group, description, array) {
 function deleteEvent(index, array) {
     array.splice(index, 1)
     renderCalendar(eventArray)
-    closeModal(document.getElementsByClassName("modal")[0])
+    closeModal(document.getElementsByClassName("event-modal")[0])
 }
 
 function changeEvent(date, group, description, index, array) {
@@ -275,7 +275,7 @@ createEventButton.forEach(button => {
         const description = document.getElementById("add-description").value
         addNewEvent(date, group, description, eventArray)
         renderCalendar(eventArray)
-        const modal = button.closest('.modal')
+        const modal = button.closest('.event-modal')
         closeModal(modal)
     })
 })
@@ -290,7 +290,7 @@ deleteEventButton.forEach(button => {
         if(index != null) {
             deleteEvent(index, eventArray)
             renderCal
-            const modal = button.closest('.modal')
+            const modal = button.closest('.event-modal')
             closeModal(modal)
         }
     })
@@ -309,7 +309,7 @@ changeEventButton.forEach(button => {
             const changeDescription = document.getElementById("change-description").value
             changeEvent(changeDate, changeGroup, changeDescription, index, eventArray)
             renderCalendar(eventArray)
-            const modal = button.closest('.modal')
+            const modal = button.closest('.event-modal')
             closeModal(modal)
         }
     })
