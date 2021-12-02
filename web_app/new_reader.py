@@ -34,8 +34,7 @@ class Reader:
         Takes a docx (docx.Document) and returns
         the name of course the syllabus belongs to
         """
-        # for paragraph in document.paragraphs:
-        #     print(paragraph.text)
+        raise NotImplementedError
 
     def check_date(self, d):
         """
@@ -139,8 +138,12 @@ class Reader:
             return None
         return dfs[0]
 
-    def get_class_id(self, filename):
-        return filename.split(os.sep)[-1]
+    def get_class_name(self, full_path):
+        """
+        Returns the name of the last file of an
+        absolute path without the file extension.
+        """
+        return full_path.split(os.sep)[-1].rsplit('.', 1)[0]
 
 
     def convert_one_docx_to_csv(self, file_path):
@@ -156,9 +159,8 @@ class Reader:
             if df is None:
                 return None
             df = self.convert_dates(df)
-            course_id = self.get_class_id(file_path)
-            df = self.convert_assignments(df, course_id)
-            # csv = df.to_csv(f"{course_id}.csv", encoding='utf-8', index=False)
+            class_name = self.get_class_name(file_path)
+            df = self.convert_assignments(df, class_name)
             return df
         else:
             return None
@@ -189,3 +191,8 @@ class Reader:
         # df = self.convert_dates(df)
         
         return df
+
+    def convert_df_to_csv(self, df):
+        if df is not None:
+            csv = df.to_csv(f"calendar.csv", encoding='utf-8', index=False)
+
