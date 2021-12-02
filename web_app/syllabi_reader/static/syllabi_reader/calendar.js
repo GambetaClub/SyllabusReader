@@ -1,5 +1,25 @@
 //Heavily inspired by Code and Create https://www.youtube.com/watch?v=o1yMqPyYeAo&t=1135s
 
+
+
+//Things to do:
+    //export to ics
+        //be able to select which groups to export to ics
+        //*be able to select to export to csv (optional)
+    //change the file location on the description to the group when importing
+    //handle invalid inputs from the user when creating events
+        //currently locks if the user types values into both description and group into add event. Then they remove remove a / and click add event
+        //Currently only checks if the day is equal to or less than 31 so it lets some invalid dates on months with less than 31 days.
+        //I challenge you to try and break it!
+    //header dips into the weeks bar
+    //Prevent a bunch of error messages from piling up on the screen
+    //Try to clean up files that are not being used and tidy up the code the best we can.
+    //Make sure the code properly handles each sylabus
+
+    //Anything else...
+
+
+
 //Class which defines events that will be added to the calendar
 class CalendarEvent {
 
@@ -11,12 +31,18 @@ class CalendarEvent {
    
     setDate(date) {
         let dateArray = date.split('/')
-        dateArray[0] = dateArray[0] - 1
-        this.date = dateArray
+        dateArray[0] = dateArray[0] - 1;
+        //this is a quick fix for error handling. Doesn't work if there is a month that has less than 31 days**********
+        if((dateArray[0] < 12 && dateArray[1] <= 31) && (dateArray[2] != undefined)) {
+            console.log("sucess!?!")
+            this.date = dateArray;
+        } else {
+            handleError("Date invalid, try mm/dd/yyyy")
+        }
     }
 
     setGroup(group) {
-        this.group = group
+        this.group = group 
     }
 
     setDescription(description) {
@@ -24,7 +50,10 @@ class CalendarEvent {
     }
 
     getDate(index) {
-        return this.date[index]
+        console.log("date length: " + this.date.length)
+        if(index < this.date.length) {
+            return this.date[index]
+        }
     }
 
     getGroup() {
@@ -144,11 +173,13 @@ const closeModalButtons = document.querySelectorAll("[data-close-button]")
 //opens whenever a day is clicked on
 openModalButtons.forEach(button => {
     button.addEventListener('click', function(e) {
+        console.log("day clicked")
         e = e || window.event
         let target = e.target
         let text = target.classList
         const modal = document.querySelector(button.dataset.modalTarget)
         document.getElementById("title").innerHTML = text[1] + " " + text[2] + ", " + text[0]
+        console.log("Getting title: " + text[1] + " " + text[2] + ", " + text[0])
 
         //generates the text boxes and buttons on the popup for the specified day based on the events on that day
         let dailyEvents = ""
@@ -183,10 +214,13 @@ openModalButtons.forEach(button => {
                             <input id="add-description" type="text"/>
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
-        document.getElementById("modal-body").innerHTML = dailyEvents
+        document.getElementById("event-modal-body").innerHTML = dailyEvents
+        console.log("text 1: " + text[1])
+        console.log("getting date for text box: " + (months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0])
 
         //section that actually opens the modal
         if(text[0] != "next-date" && text[0] != "prev-date" && text[0] != "days") {
+            console.log(text)
             openModal(modal)
 
             const createEventButton = document.querySelectorAll("[data-event-add]")
@@ -198,8 +232,7 @@ openModalButtons.forEach(button => {
                     const group = document.getElementById("add-group").value
                     const description = document.getElementById("add-description").value
                     addNewEvent(date, group, description, eventArray)
-                    renderCalendar(eventArray)
-                    const modal = button.closest('.modal')
+                    const modal = button.closest('.event-modal')
                     closeModal(modal)
                 })
             })
@@ -208,11 +241,11 @@ openModalButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     eventArray.forEach(function(event, index) {
                         if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
-                            event.setDate(document.getElementById("date"+index).value)
-                            event.setGroup(document.getElementById("group"+index).value)
-                            event.setDescription(document.getElementById("description"+index).value)
-                            renderCalendar(eventArray)
-                            const modal = button.closest('.modal')
+                            const date = document.getElementById("date"+index).value
+                            const group = document.getElementById("group"+index).value
+                            const description = document.getElementById("description"+index).value
+                            changeEvent(date, group, description, index, eventArray)
+                            const modal = button.closest('.event-modal')
                             closeModal(modal)
                         }
                     })
@@ -224,7 +257,7 @@ openModalButtons.forEach(button => {
 
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const modal = button.closest('.modal')
+        const modal = button.closest('.event-modal')
         closeModal(modal)
     })
 })
@@ -240,73 +273,31 @@ function closeModal(modal) {
 }
 
 function addNewEvent(date, group, description, array) {
-    let event = new CalendarEvent(date, group, description)
-    array.push(event)
+    if((date != "" && group != "") && description != "") {
+        let event = new CalendarEvent(date, group, description)
+        array.push(event)
+    } else {
+        handleError("date, group, and description must all be filled.")
+    }
+    renderCalendar(eventArray)
 }
 
 function deleteEvent(index, array) {
     array.splice(index, 1)
     renderCalendar(eventArray)
-    closeModal(document.getElementsByClassName("modal")[0])
+    closeModal(document.getElementsByClassName("event-modal")[0])
 }
 
 function changeEvent(date, group, description, index, array) {
+    if((date != "" && group != "") && description != "") {
         array[index].setDate(date)
         array[index].setGroup(group)
         array[index].setDescription(description)
+    } else {
+        handleError("date, group, and description must all be filled.")   
+    }
+    renderCalendar(eventArray)
 }
-
-const createEventButton = document.querySelectorAll("[data-event-add]")
-const deleteEventButton = document.querySelectorAll("[data-event-delete]")
-const changeEventButton = document.querySelectorAll("[data-event-change]")
-
-createEventButton.forEach(button => {
-    button.addEventListener('click', () => {
-        const date = document.getElementById("add-date").value
-        const group = document.getElementById("add-group").value
-        const description = document.getElementById("add-description").value
-        addNewEvent(date, group, description, eventArray)
-        renderCalendar(eventArray)
-        const modal = button.closest('.modal')
-        closeModal(modal)
-    })
-})
-
-deleteEventButton.forEach(button => {
-    button.addEventListener('click', () => {
-        let date = document.getElementById("find-date").value.split('/')
-        date[0] = date[0]-1
-        const group = document.getElementById("find-group").value
-        const description = document.getElementById("find-description").value
-        let index = findEvent(date, group, description, eventArray)
-        if(index != null) {
-            deleteEvent(index, eventArray)
-            renderCal
-            const modal = button.closest('.modal')
-            closeModal(modal)
-        }
-    })
-})
-
-changeEventButton.forEach(button => {
-    button.addEventListener('click', () => {
-        let findDate = document.getElementById("find-date").value.split('/')
-        findDate[0] = findDate[0]-1
-        const findGroup = document.getElementById("find-group").value
-        const findDescription = document.getElementById("find-description").value
-        let index = findEvent(findDate, findGroup, findDescription, eventArray)
-        if(index != null) {
-            let changeDate = document.getElementById("change-date").value
-            const changeGroup = document.getElementById("change-group").value
-            const changeDescription = document.getElementById("change-description").value
-            changeEvent(changeDate, changeGroup, changeDescription, index, eventArray)
-            renderCalendar(eventArray)
-            const modal = button.closest('.modal')
-            closeModal(modal)
-        }
-    })
-})
-
 
 // It accepts a dictionary an iterates through its elements
 function handleResponse(obj) {  
@@ -323,7 +314,7 @@ function handleResponse(obj) {
     for(let i = 0; i < numEvents; i++){
         let eventAssignment = obj["Assignments"][i]
         let eventDate = obj["Date"][i]
-        addNewEvent(eventDate, "No group", eventAssignment, eventArray)
+        addNewEvent(eventDate, "group", eventAssignment, eventArray)
     }
     renderCalendar(eventArray)
     $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
