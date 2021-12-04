@@ -194,4 +194,6 @@ class Reader:
 
     def convert_df_to_csv(self, df):
         if df is not None:
-            csv = df.to_csv(f"calendar.csv", encoding='utf-8', index=False)
+            csv_full_path = os.path.join(os.getcwd(),"web_app","media","csv","calendar.csv")
+            df.to_csv(csv_full_path, encoding='utf-8', index=False)
+            return csv_full_path

@@ -12,10 +12,10 @@
         //Currently only checks if the day is equal to or less than 31 so it lets some invalid dates on months with less than 31 days.
         //I challenge you to try and break it!
     //header dips into the weeks bar
-    //Prevent a bunch of error messages from piling up on the screen
+    //Prevent a bunch of error messages from pulling up on the screen
     //Try to clean up files that are not being used and tidy up the code the best we can.
-    //Make sure the code properly handles each sylabus
-    //Make it easily accesable (trying to get it on the web) (we may be able to get an exception to this)
+    //Make sure the code properly handles each syllabus
+    //Make it easily accessible (trying to get it on the web) (we may be able to get an exception to this)
 
     //Anything else...
 
@@ -35,10 +35,9 @@ class CalendarEvent {
         dateArray[0] = dateArray[0] - 1;
         //this is a quick fix for error handling. Doesn't work if there is a month that has less than 31 days**********
         if((dateArray[0] < 12 && dateArray[1] <= 31) && (dateArray[2] != undefined)) {
-            console.log("sucess!?!")
             this.date = dateArray;
         } else {
-            handleError("Date invalid, try mm/dd/yyyy")
+            displayErrorMsg("Date invalid, try mm/dd/yyyy")
         }
     }
 
@@ -51,7 +50,6 @@ class CalendarEvent {
     }
 
     getDate(index) {
-        console.log("date length: " + this.date.length)
         if(index < this.date.length) {
             return this.date[index]
         }
@@ -174,13 +172,11 @@ const closeModalButtons = document.querySelectorAll("[data-close-button]")
 //opens whenever a day is clicked on
 openModalButtons.forEach(button => {
     button.addEventListener('click', function(e) {
-        console.log("day clicked")
         e = e || window.event
         let target = e.target
         let text = target.classList
         const modal = document.querySelector(button.dataset.modalTarget)
         document.getElementById("title").innerHTML = text[1] + " " + text[2] + ", " + text[0]
-        console.log("Getting title: " + text[1] + " " + text[2] + ", " + text[0])
 
         //generates the text boxes and buttons on the popup for the specified day based on the events on that day
         let dailyEvents = ""
@@ -216,12 +212,9 @@ openModalButtons.forEach(button => {
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
         document.getElementById("event-modal-body").innerHTML = dailyEvents
-        console.log("text 1: " + text[1])
-        console.log("getting date for text box: " + (months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0])
 
         //section that actually opens the modal
         if(text[0] != "next-date" && text[0] != "prev-date" && text[0] != "days") {
-            console.log(text)
             openModal(modal)
 
             const createEventButton = document.querySelectorAll("[data-event-add]")
@@ -278,7 +271,7 @@ function addNewEvent(date, group, description, array) {
         let event = new CalendarEvent(date, group, description)
         array.push(event)
     } else {
-        handleError("date, group, and description must all be filled.")
+        displayErrorMsg("date, group, and description must all be filled.")
     }
     renderCalendar(eventArray)
 }
@@ -295,7 +288,7 @@ function changeEvent(date, group, description, index, array) {
         array[index].setGroup(group)
         array[index].setDescription(description)
     } else {
-        handleError("date, group, and description must all be filled.")   
+        displayErrorMsg("date, group, and description must all be filled.")   
     }
     renderCalendar(eventArray)
 }
@@ -321,7 +314,7 @@ function handleResponse(obj) {
     $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
 }
 
-function handleError(errorMessage) {
+function displayErrorMsg(errorMessage) {
     // Show dismissible error message
     $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
 }
@@ -345,7 +338,7 @@ $('#file_form').change(function(e){
             handleResponse(data)
         },
         error:function(data){
-            handleError(data.statusText)
+            displayErrorMsg(data.statusText)
         } 
     })
     e.preventDefault()
@@ -353,6 +346,11 @@ $('#file_form').change(function(e){
 
 
 function saveCalendar(){
+    if (eventArray.length == 0) {
+        displayErrorMsg("You cannot export an empty calendar.")
+        return
+    }
+
     var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
     events = JSON.stringify(eventArray)
     
@@ -365,7 +363,14 @@ function saveCalendar(){
             'events': events
         },
     })
-    .done(function(msg) {
-        alert(msg)
+    .done(function(res) {
+        var downloadLink = document.createElement("a");
+        var blob = new Blob(["\ufeff", res]);
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "calendar.csv";  //Name the file here
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     })
 }

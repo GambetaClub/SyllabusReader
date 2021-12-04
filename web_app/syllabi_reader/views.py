@@ -1,3 +1,6 @@
+import re
+import json
+import numpy as np
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -6,10 +9,10 @@ from new_reader import Reader
 from syllabi_reader.models import Document
 from syllabi_reader.forms import DocumentForm
 from web_app.settings import MEDIA_ROOT
-import re
-import json
-import pandas as pd
-import numpy as np
+from django.http import HttpResponse
+from django.http import FileResponse
+
+
 
 # from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
@@ -21,8 +24,12 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
+def get_docx_path(filename):
+    """
+    Gets the filenae of docx file
+    and returns its full path.
+    """
 
-def get_file_path(filename):
     dir = MEDIA_ROOT + "/docx"
     if filename.startswith("~$") or not filename.endswith(".docx"):
         return None
@@ -31,13 +38,17 @@ def get_file_path(filename):
     return file_ref.name
 
 
+def download_file(request, path):
+    # fill these variables with real values
+    raise NotImplementedError
+
 def get_calendar_df(filename):
     """
     Providing a syllabus name (filename) for a docx file
     the function and returns a dataframe with
     the calendar data of the syllabus.
     """
-    file_path = get_file_path(filename)
+    file_path = get_docx_path(filename)
     df = reader.convert_one_docx_to_csv(file_path)
     return df
 
@@ -94,7 +105,9 @@ def save_calendar(request):
     if request.method == "POST":
         events = request.POST.get('events', None) # Gets a string representing an array of events
         df = reader.parse_json_events(events) # Parses the string and converts it into a df
-        reader.convert_df_to_csv(df) # It saves the df as csv file
-        return HttpResponse("The current calendar has been parsed successfully.")
+        path = reader.convert_df_to_csv(df) # It saves the df as csv file and returns its path
+        response = FileResponse(open(path, 'rb'))
+        return response
     else:
         return HttpResponseRedirect(reverse("index"))
+
