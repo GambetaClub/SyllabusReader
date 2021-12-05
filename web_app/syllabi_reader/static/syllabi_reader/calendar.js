@@ -349,7 +349,7 @@ $('#file_form').change(function(e){
     e.preventDefault()
 })
 
-function prompt_download(res, filename){
+function promptDownload(res, filename){
     // Gets a response with a file and prompts it download
     var downloadLink = document.createElement("a");
     var blob = new Blob(["\ufeff", res]);
@@ -361,7 +361,7 @@ function prompt_download(res, filename){
     document.body.removeChild(downloadLink);
 }
 
-function handleExport(route, filename){
+function handleDownload(route, filename){
     if (eventArray.length == 0) {
         displayErrorMsg("You cannot export an empty calendar.")
         return
@@ -385,17 +385,17 @@ function handleExport(route, filename){
         },
     })
     .done(function(res) {   
-        prompt_download(res, filename)
+        promptDownload(res, filename)
     })
 }
 
 
 function saveInCsv(){
-    handleExport("/save_csv", "calendar.csv")
+    handleDownload("/save_csv", "calendar.csv")
 }
 
 
 
 function saveInIcs(){
-    handleExport("/save_ics", "calendar.ics")
+    handleDownload("/save_ics", "calendar.ics")
 }
