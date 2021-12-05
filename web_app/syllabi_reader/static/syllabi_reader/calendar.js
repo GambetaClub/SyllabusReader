@@ -1,32 +1,19 @@
 //Heavily inspired by Code and Create https://www.youtube.com/watch?v=o1yMqPyYeAo&t=1135s
 
-
-
 //Things to do:
     //export to ics
-        //be able to select which groups to export to ics
-        //*be able to select to export to csv (optional)
-    //change the file location on the description to the group when importing
     //handle invalid inputs from the user when creating events
-        //currently locks if the user types values into both description and group into add event. Then they remove remove a / and click add event
         //Currently only checks if the day is equal to or less than 31 so it lets some invalid dates on months with less than 31 days.
         //I challenge you to try and break it!
-    //header dips into the weeks bar
-    //Prevent a bunch of error messages from pulling up on the screen
-    //Try to clean up files that are not being used and tidy up the code the best we can.
     //Make sure the code properly handles each syllabus
-    //Make it easily accessible (trying to get it on the web) (we may be able to get an exception to this)
 
     //Anything else...
-
-
 
 //Class which defines events that will be added to the calendar
 class CalendarEvent {
 
-    constructor(date, group, description) {
+    constructor(date, description) {
         this.setDate(date)
-        this.setGroup(group)
         this.setDescription(description)
     }
    
@@ -41,10 +28,6 @@ class CalendarEvent {
         }
     }
 
-    setGroup(group) {
-        this.group = group 
-    }
-
     setDescription(description) {
         this.description = description
     }
@@ -53,10 +36,6 @@ class CalendarEvent {
         if(index < this.date.length) {
             return this.date[index]
         }
-    }
-
-    getGroup() {
-        return this.group
     }
 
     getDescription() {
@@ -184,15 +163,17 @@ openModalButtons.forEach(button => {
         eventArray.forEach(function(event, index) {
             if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                 eventFound = true
-                //generates the textboxes and buttons for the specified event
                 dailyEvents += `<div class="event-section">
                                     <b>Event</b>
-                                    <p>Date</p>
-                                    <input id="date${index}" type="text" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}" />
-                                    <p>Group Name</p>
-                                    <input id="group${index}" type="text" value="${event.getGroup()}" />
-                                    <p>Description</p>
-                                    <input id="description${index}" type="text" value="${event.getDescription()}" />
+                                    <label class="omrs-input-underlined">
+				                        <input required id="date${index}" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}">
+				                        <span class="omrs-input-label">Date</span>
+					                    <span class="omrs-input-helper">mm/dd/yyyy</span>
+				                    </label>
+                                    <label class="omrs-input-underlined">
+				                        <input required id="description${index}" value="${event.getDescription()}">
+				                        <span class="omrs-input-label">Description</span>
+				                    </label>
                                     <button data-event-delete${index} id="delete-event${index}" onclick="deleteEvent(${index}, eventArray)">Delete Event</button>
                                 </div>`
             }
@@ -200,17 +181,21 @@ openModalButtons.forEach(button => {
         if(eventFound) {
             dailyEvents += `<button data-event-save id="save-events">Save Events</button>`
         }
-        //generates the add event textboxes and buttons
         dailyEvents += `<div class="event-section">
                             <b>Add Event</b>
-                            <p>Date</p>
-                            <input id="add-date" type="text" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}"/>
-                            <p>Group Name</p>
-                            <input id="add-group" type="text"/>
-                            <p>Description</p>
-                            <input id="add-description" type="text"/>
+                            <label class="omrs-input-underlined">
+				                <input required id="add-date" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}">
+				                <span class="omrs-input-label">Date</span>
+                                <span class="omrs-input-helper">mm/dd/yyyy</span>
+				            </label>
+                            <label class="omrs-input-underlined">
+				                <input required id="add-description">
+				                <span class="omrs-input-label">Description</span>
+				            </label>
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
+
+
         document.getElementById("event-modal-body").innerHTML = dailyEvents
 
         //section that actually opens the modal
@@ -223,9 +208,8 @@ openModalButtons.forEach(button => {
             createEventButton.forEach(button => {
                 button.addEventListener('click', () => {
                     const date = document.getElementById("add-date").value
-                    const group = document.getElementById("add-group").value
                     const description = document.getElementById("add-description").value
-                    addNewEvent(date, group, description, eventArray)
+                    addNewEvent(date, description, eventArray)
                     const modal = button.closest('.event-modal')
                     closeModal(modal)
                 })
@@ -236,9 +220,8 @@ openModalButtons.forEach(button => {
                     eventArray.forEach(function(event, index) {
                         if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                             const date = document.getElementById("date"+index).value
-                            const group = document.getElementById("group"+index).value
                             const description = document.getElementById("description"+index).value
-                            changeEvent(date, group, description, index, eventArray)
+                            changeEvent(date, description, index, eventArray)
                             const modal = button.closest('.event-modal')
                             closeModal(modal)
                         }
@@ -266,12 +249,21 @@ function closeModal(modal) {
     modal.classList.remove('active')  
 }
 
-function addNewEvent(date, group, description, array) {
-    if((date != "" && group != "") && description != "") {
-        let event = new CalendarEvent(date, group, description)
-        array.push(event)
+function addNewEvent(date, description, array) {
+    if(date != "" && description != "") {
+        //this is a quick fix for error handling. Doesn't work if there is a month that has less than 31 days**********
+        let dateArray = date.split('/')
+        dateArray[0] = dateArray[0] - 1;
+        if((dateArray[0] < 12 && dateArray[1] <= 31) && (dateArray[2] != undefined)) {
+            let event = new CalendarEvent(date, description)
+            array.push(event)
+        } else {
+            displayErrorMsg("Date invalid, try mm/dd/yyyy")
+        }
+        
+        
     } else {
-        displayErrorMsg("date, group, and description must all be filled.")
+        displayErrorMsg("date and description must all be filled.")
     }
     renderCalendar(eventArray)
 }
@@ -282,13 +274,12 @@ function deleteEvent(index, array) {
     closeModal(document.getElementsByClassName("event-modal")[0])
 }
 
-function changeEvent(date, group, description, index, array) {
-    if((date != "" && group != "") && description != "") {
+function changeEvent(date, description, index, array) {
+    if(date != "" && description != "") {
         array[index].setDate(date)
-        array[index].setGroup(group)
         array[index].setDescription(description)
     } else {
-        displayErrorMsg("date, group, and description must all be filled.")   
+        displayErrorMsg("date and description must all be filled.")   
     }
     renderCalendar(eventArray)
 }
@@ -310,15 +301,26 @@ function handleResponse(obj) {
     for(let i = 0; i < numEvents; i++){
         let eventAssignment = obj["Assignments"][i]
         let eventDate = obj["Date"][i]
-        addNewEvent(eventDate, "group", eventAssignment, eventArray)
+        addNewEvent(eventDate, eventAssignment, eventArray)
     }
     renderCalendar(eventArray)
-    $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+    $('.container').ready(function() {
+        $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+        $(".alert").first().hide().slideDown(500).delay(4000).slideUp(500, function () {
+           $(this).remove(); 
+        });
+    });
+    
 }
 
 function displayErrorMsg(errorMessage) {
     // Show dismissible error message
-    $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+    $('.container').ready(function() {
+        $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+        $(".alert").first().hide().slideDown(500).delay(4000).slideUp(500, function () {
+           $(this).remove(); 
+        });
+    });
 }
 
 $('#file_form').change(function(e){
