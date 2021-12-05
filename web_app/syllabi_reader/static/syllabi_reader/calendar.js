@@ -303,8 +303,10 @@ function changeEvent(date, group, description, index, array) {
     renderCalendar(eventArray)
 }
 
-// It accepts a dictionary an iterates through its elements
+
 function handleResponse(obj) {  
+    // It accepts a dictionary an iterates through its elements
+
     // Counting the number of events in the JSON object
     let numEvents = 0
     for (let key of Object.keys(obj)) {
@@ -341,6 +343,9 @@ function displayErrorMsg(errorMessage) {
 }
 
 $('#file_form').change(function(e){
+    // When the input changes, it posts the file uploaded
+    // and handles the response.
+
     var form_data = new FormData()
     var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
     form_data.append('file', $('#file_input')[0].files[0])    
@@ -365,33 +370,53 @@ $('#file_form').change(function(e){
     e.preventDefault()
 })
 
+function promptDownload(res, filename){
+    // Gets a response with a file and prompts it download
+    var downloadLink = document.createElement("a");
+    var blob = new Blob(["\ufeff", res]);
+    var url = URL.createObjectURL(blob);
+    downloadLink.href = url;
+    downloadLink.download = filename;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
 
-function saveCalendar(){
+function handleDownload(route, filename){
     if (eventArray.length == 0) {
         displayErrorMsg("You cannot export an empty calendar.")
         return
     }
 
+    // Token necessary to make posts requests in Django
     var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
+    
+    // Transforming the array of events to a string
+    // in order to send it in the request
     events = JSON.stringify(eventArray)
     
+    // Ajax request to the backend
     $.ajax({
         type:'POST',
-        url:'/save_calendar',
-        headers: {'X-CSRFToken': token},
+        url: route,
+        headers: {'X-CSRFToken': token}, // Appending the token to the ajax request
         datatype: 'json',
         data : {
-            'events': events
+            'events': events // Appending the events to the request
         },
     })
-    .done(function(res) {
-        var downloadLink = document.createElement("a");
-        var blob = new Blob(["\ufeff", res]);
-        var url = URL.createObjectURL(blob);
-        downloadLink.href = url;
-        downloadLink.download = "calendar.csv";  //Name the file here
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
+    .done(function(res) {   
+        promptDownload(res, filename)
     })
+}
+
+
+function saveInCsv(){
+    handleDownload("/save_csv", "calendar.csv")
+}
+
+
+
+function saveInIcs(){
+    handleDownload("/save_ics", "calendar.ics")
 }
