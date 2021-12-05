@@ -5,17 +5,13 @@
 //Things to do:
     //export to ics
         //be able to select which groups to export to ics
-        //*be able to select to export to csv (optional)
     //change the file location on the description to the group when importing
     //handle invalid inputs from the user when creating events
         //currently locks if the user types values into both description and group into add event. Then they remove remove a / and click add event
         //Currently only checks if the day is equal to or less than 31 so it lets some invalid dates on months with less than 31 days.
         //I challenge you to try and break it!
-    //header dips into the weeks bar
-    //Prevent a bunch of error messages from pulling up on the screen
     //Try to clean up files that are not being used and tidy up the code the best we can.
     //Make sure the code properly handles each syllabus
-    //Make it easily accessible (trying to get it on the web) (we may be able to get an exception to this)
 
     //Anything else...
 
@@ -184,18 +180,6 @@ openModalButtons.forEach(button => {
         eventArray.forEach(function(event, index) {
             if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                 eventFound = true
-                //generates the textboxes and buttons for the specified event
-                // dailyEvents += `<div class="event-section">
-                //                     <b>Event</b>
-                //                     <p>Date</p>
-                //                     <input id="date${index}" type="text" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}" />
-                //                     <p>Group Name</p>
-                //                     <input id="group${index}" type="text" value="${event.getGroup()}" />
-                //                     <p>Description</p>
-                //                     <input id="description${index}" type="text" value="${event.getDescription()}" />
-                //                     <button data-event-delete${index} id="delete-event${index}" onclick="deleteEvent(${index}, eventArray)">Delete Event</button>
-                //                 </div>`
-
                 dailyEvents += `<div class="event-section">
                                     <b>Event</b>
                                     <label class="omrs-input-underlined">
@@ -218,19 +202,6 @@ openModalButtons.forEach(button => {
         if(eventFound) {
             dailyEvents += `<button data-event-save id="save-events">Save Events</button>`
         }
-        //generates the add event textboxes and buttons
-        // dailyEvents += `<div class="event-section">
-        //                     <b>Add Event</b>
-        //                     <p>Date</p>
-        //                     <input id="add-date" type="text" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}"/>
-        //                     <p>Group Name</p>
-        //                     <input id="add-group" type="text"/>
-        //                     <p>Description</p>
-        //                     <input id="add-description" type="text"/>
-        //                     <button data-event-add id="add-event">Add Event</button>
-        //                 </div>`
-
-
         dailyEvents += `<div class="event-section">
                             <b>Add Event</b>
                             <label class="omrs-input-underlined">
@@ -350,12 +321,23 @@ function handleResponse(obj) {
         addNewEvent(eventDate, "group", eventAssignment, eventArray)
     }
     renderCalendar(eventArray)
-    $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+    $('.container').ready(function() {
+        $('.container').prepend("<div class='alert alert-success alert-dismissible fade show' role='alert'> <strong>Success</strong> - Syllabus successfully uploaded.<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+        $(".alert").first().hide().slideDown(500).delay(4000).slideUp(500, function () {
+           $(this).remove(); 
+        });
+    });
+    
 }
 
 function displayErrorMsg(errorMessage) {
     // Show dismissible error message
-    $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+    $('.container').ready(function() {
+        $('.container').prepend("<div id='error_message' class='alert alert-danger alert-dismissible fade show' role='alert'> <strong>Error</strong> - "+ errorMessage +"<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button></div>")
+        $(".alert").first().hide().slideDown(500).delay(4000).slideUp(500, function () {
+           $(this).remove(); 
+        });
+    });
 }
 
 $('#file_form').change(function(e){
