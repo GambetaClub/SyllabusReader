@@ -263,7 +263,12 @@ $('#file_form').change(function(e){
         cache: false,
         data : form_data,
         success: function(response){
-            console.log(response)
+            let array = response;
+            let assignments = [];
+            for(let i = 0; i < response.Assignments.length; i++){
+                assignments = response.Assignments[i];
+            }
+            console.log(assignments);
         },
         error: function(response){
             console.log("Something went wrong: " + response)
