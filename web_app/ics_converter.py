@@ -21,8 +21,8 @@ class ICSConverter:
                 if row["Assignments"] != '-' and row['Assignments'] != '':
                     event = Event()
                     event.add("summary", row["Assignments"])
-                    date = [int(x) for x in re.split(r'-| |\:', row["Date"])]
-                    date = str(datetime(date[0], date[1], date[2]).date()).split('-')
+                    date = [int(x) for x in row["Date"].split('/')]
+                    date = str(date[0] + date[1] + date[2])
                     event['dtstart'] = date[0] + date[1] + date[2] + "T000000Z"
                     self.__calendar.add_component(event)
     

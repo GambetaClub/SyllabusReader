@@ -4,6 +4,8 @@ import dateutil.parser
 import json 
 import pandas as pd
 from docx import Document
+from ics_converter import ICSConverter
+
 
 class Reader:
     def __init__(self, dir=None, syllabi=None, calendar=None):
@@ -197,3 +199,11 @@ class Reader:
             csv_full_path = os.path.join(os.getcwd(),"web_app","media","csv","calendar.csv")
             df.to_csv(csv_full_path, encoding='utf-8', index=False)
             return csv_full_path
+
+    def convert_csv_to_ics(self, path):
+        files_dir = os.path.dirname(path)
+        ics_converter = ICSConverter(files_dir)
+        ics_converter.readCSV(path)
+        ics_converter.exportICS()
+
+        

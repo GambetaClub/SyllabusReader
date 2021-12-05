@@ -345,7 +345,7 @@ $('#file_form').change(function(e){
 })
 
 
-function saveCalendar(){
+function saveInCsv(){
     if (eventArray.length == 0) {
         displayErrorMsg("You cannot export an empty calendar.")
         return
@@ -356,7 +356,38 @@ function saveCalendar(){
     
     $.ajax({
         type:'POST',
-        url:'/save_calendar',
+        url:'/save_csv',
+        headers: {'X-CSRFToken': token},
+        datatype: 'json',
+        data : {
+            'events': events
+        },
+    })
+    .done(function(res) {
+        var downloadLink = document.createElement("a");
+        var blob = new Blob(["\ufeff", res]);
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "calendar.csv";  //Name the file here
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    })
+}
+
+
+function saveInIcs(){
+    if (eventArray.length == 0) {
+        displayErrorMsg("You cannot export an empty calendar.")
+        return
+    }
+
+    var token = $('input[name="csrfmiddlewaretoken"]').attr('value')
+    events = JSON.stringify(eventArray)
+    
+    $.ajax({
+        type:'POST',
+        url:'/save_ics',
         headers: {'X-CSRFToken': token},
         datatype: 'json',
         data : {

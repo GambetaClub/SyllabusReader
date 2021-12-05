@@ -101,7 +101,7 @@ def read_docx(request):
         return reverse('syllabi_reader:index')
 
 
-def save_calendar(request):
+def save_csv(request):
     if request.method == "POST":
         events = request.POST.get('events', None) # Gets a string representing an array of events
         df = reader.parse_json_events(events) # Parses the string and converts it into a df
@@ -111,3 +111,15 @@ def save_calendar(request):
     else:
         return HttpResponseRedirect(reverse("index"))
 
+
+def save_ics(request):
+    if request.method == "POST":
+        events = request.POST.get('events', None) # Gets a string representing an array of events
+        df = reader.parse_json_events(events) # Parses the string and converts it into a df
+        path = reader.convert_df_to_csv(df) # It saves the df as csv file and returns its path
+        reader.convert_csv_to_ics(path)
+        # response = FileResponse(open(path, 'rb'))
+        # return response
+        return None
+    else:
+        return HttpResponseRedirect(reverse("index"))
