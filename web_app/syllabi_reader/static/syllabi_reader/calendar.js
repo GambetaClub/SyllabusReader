@@ -5,10 +5,8 @@
 //Things to do:
     //export to ics
     //handle invalid inputs from the user when creating events
-        //currently locks if the user types values into both description and group into add event. Then they remove remove a / and click add event
         //Currently only checks if the day is equal to or less than 31 so it lets some invalid dates on months with less than 31 days.
         //I challenge you to try and break it!
-    //Try to clean up files that are not being used and tidy up the code the best we can.
     //Make sure the code properly handles each syllabus
 
     //Anything else...
@@ -257,8 +255,17 @@ function closeModal(modal) {
 
 function addNewEvent(date, description, array) {
     if(date != "" && description != "") {
-        let event = new CalendarEvent(date, description)
-        array.push(event)
+        //this is a quick fix for error handling. Doesn't work if there is a month that has less than 31 days**********
+        let dateArray = date.split('/')
+        dateArray[0] = dateArray[0] - 1;
+        if((dateArray[0] < 12 && dateArray[1] <= 31) && (dateArray[2] != undefined)) {
+            let event = new CalendarEvent(date, description)
+            array.push(event)
+        } else {
+            displayErrorMsg("Date invalid, try mm/dd/yyyy")
+        }
+        
+        
     } else {
         displayErrorMsg("date and description must all be filled.")
     }
