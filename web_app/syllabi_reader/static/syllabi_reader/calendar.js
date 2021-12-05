@@ -1,7 +1,5 @@
 //Heavily inspired by Code and Create https://www.youtube.com/watch?v=o1yMqPyYeAo&t=1135s
 
-
-
 //Things to do:
     //export to ics
     //handle invalid inputs from the user when creating events
@@ -10,8 +8,6 @@
     //Make sure the code properly handles each syllabus
 
     //Anything else...
-
-
 
 //Class which defines events that will be added to the calendar
 class CalendarEvent {
