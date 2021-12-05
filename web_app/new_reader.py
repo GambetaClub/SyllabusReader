@@ -8,25 +8,12 @@ from ics_converter import ICSConverter
 
 
 class Reader:
-    def __init__(self, dir=None, syllabi=None, calendar=None):
-        self.__dir = dir
-        self.__syllabi = syllabi
-        self.__calendar = calendar
-
-    def set_dir(self, dir):
-        self.__dir = dir
-
-    def get_dir(self):
-        return self.__dir
+    def __init__(self, csv_dir=None, ics_dir=None):
+        self.__csv_dir = csv_dir
+        self.ics_converter = ICSConverter(ics_dir)
 
     def get_filenames(self):
         return [key for key in self.__tables.keys()]
-
-    def set_syllabi(self, syllabi):
-        self.__syllabi = syllabi
-
-    def get_syllabi(self):
-        return self.__syllabi
 
     def get_calendar(self):
         return self.__calendar
@@ -196,14 +183,13 @@ class Reader:
 
     def convert_df_to_csv(self, df):
         if df is not None:
-            csv_full_path = os.path.join(os.getcwd(),"web_app","media","csv","calendar.csv")
-            df.to_csv(csv_full_path, encoding='utf-8', index=False)
-            return csv_full_path
+            csv_path = os.path.join(self.__csv_dir,"calendar.csv")
+            df.to_csv(csv_path, encoding='utf-8', index=False)
+            return csv_path
 
-    def convert_csv_to_ics(self, path):
-        files_dir = os.path.dirname(path)
-        ics_converter = ICSConverter(files_dir)
-        ics_converter.readCSV(path)
-        ics_converter.exportICS()
+    def convert_csv_to_ics(self, csv_path):
+        self.ics_converter.readCSV(csv_path) 
+        ics_path = self.ics_converter.exportICS()
+        return ics_path
 
         
