@@ -185,14 +185,32 @@ openModalButtons.forEach(button => {
             if((event.getDate(1) == text[2] || event.getDate(1) == "0" + text[2]) && (event.getDate(0) == date.getMonth() && event.getDate(2) == date.getFullYear())) {
                 eventFound = true
                 //generates the textboxes and buttons for the specified event
+                // dailyEvents += `<div class="event-section">
+                //                     <b>Event</b>
+                //                     <p>Date</p>
+                //                     <input id="date${index}" type="text" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}" />
+                //                     <p>Group Name</p>
+                //                     <input id="group${index}" type="text" value="${event.getGroup()}" />
+                //                     <p>Description</p>
+                //                     <input id="description${index}" type="text" value="${event.getDescription()}" />
+                //                     <button data-event-delete${index} id="delete-event${index}" onclick="deleteEvent(${index}, eventArray)">Delete Event</button>
+                //                 </div>`
+
                 dailyEvents += `<div class="event-section">
                                     <b>Event</b>
-                                    <p>Date</p>
-                                    <input id="date${index}" type="text" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}" />
-                                    <p>Group Name</p>
-                                    <input id="group${index}" type="text" value="${event.getGroup()}" />
-                                    <p>Description</p>
-                                    <input id="description${index}" type="text" value="${event.getDescription()}" />
+                                    <label class="omrs-input-underlined">
+				                        <input required id="date${index}" value="${(event.getDate(0) + 1) + "/" + text[2] + "/" + event.getDate(2)}">
+				                        <span class="omrs-input-label">Date</span>
+					                    <span class="omrs-input-helper">mm/dd/yyyy</span>
+				                    </label>
+                                    <label class="omrs-input-underlined">
+				                        <input required id="group${index}" value="${event.getGroup()}">
+				                        <span class="omrs-input-label">Group</span>
+				                    </label>
+                                    <label class="omrs-input-underlined">
+				                        <input required id="description${index}" value="${event.getDescription()}">
+				                        <span class="omrs-input-label">Description</span>
+				                    </label>
                                     <button data-event-delete${index} id="delete-event${index}" onclick="deleteEvent(${index}, eventArray)">Delete Event</button>
                                 </div>`
             }
@@ -201,16 +219,37 @@ openModalButtons.forEach(button => {
             dailyEvents += `<button data-event-save id="save-events">Save Events</button>`
         }
         //generates the add event textboxes and buttons
+        // dailyEvents += `<div class="event-section">
+        //                     <b>Add Event</b>
+        //                     <p>Date</p>
+        //                     <input id="add-date" type="text" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}"/>
+        //                     <p>Group Name</p>
+        //                     <input id="add-group" type="text"/>
+        //                     <p>Description</p>
+        //                     <input id="add-description" type="text"/>
+        //                     <button data-event-add id="add-event">Add Event</button>
+        //                 </div>`
+
+
         dailyEvents += `<div class="event-section">
                             <b>Add Event</b>
-                            <p>Date</p>
-                            <input id="add-date" type="text" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}"/>
-                            <p>Group Name</p>
-                            <input id="add-group" type="text"/>
-                            <p>Description</p>
-                            <input id="add-description" type="text"/>
+                            <label class="omrs-input-underlined">
+				                <input required id="add-date" value="${(months.indexOf(text[1]) + 1) + "/" + text[2] + "/" + text[0]}">
+				                <span class="omrs-input-label">Date</span>
+                                <span class="omrs-input-helper">mm/dd/yyyy</span>
+				            </label>
+                            <label class="omrs-input-underlined">
+				                <input required id="add-group">
+				                <span class="omrs-input-label">Group</span>
+				            </label>
+                            <label class="omrs-input-underlined">
+				                <input required id="add-description">
+				                <span class="omrs-input-label">Description</span>
+				            </label>
                             <button data-event-add id="add-event">Add Event</button>
                         </div>`
+
+
         document.getElementById("event-modal-body").innerHTML = dailyEvents
 
         //section that actually opens the modal
