@@ -3,5 +3,8 @@
 *.csv
 *.pyc
 *.txt
+*.docx
 *.ics
+.env
+*.sqlite3
 neural_newtwork.py
