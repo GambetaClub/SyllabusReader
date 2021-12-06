@@ -65,9 +65,15 @@ body {
   padding: 0.4rem;
   cursor: pointer;
   background-color: #141414;
+  border-bottom: 0.125rem solid #598d8f;
+}
+
+.export:hover {
+  background: #1f1f1f;
 }
 
 .import .button {
+  width: 19rem;
   cursor: pointer;
   border: none;
   outline: none;
@@ -77,6 +83,11 @@ body {
   color: #598d8f;
   background-color: #141414;
   padding: 0.4rem;
+  border-bottom: 0.125rem solid #598d8f;
+}
+
+.import:hover .button:hover {
+  background-color: #1f1f1f;
 }
 
 ::-webkit-file-upload-button {
@@ -128,6 +139,12 @@ body {
   border-style: solid;
   border-color: #598d8f;
   cursor: pointer;
+  background-color: #2f3333;
+}
+
+.days .today:hover {
+  cursor: pointer;
+  background-color: #2f3333;
 }
 
 .prev-date,
