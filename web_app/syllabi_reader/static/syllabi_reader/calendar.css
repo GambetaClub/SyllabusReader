@@ -73,8 +73,8 @@ body {
 }
 
 .import .button {
-  width: 19rem;
-  max-width: 19rem;
+  width: 12rem;
+  max-width: 12rem;
   overflow-x: hidden;
   cursor: pointer;
   border: none;
@@ -88,8 +88,12 @@ body {
   border-bottom: 0.125rem solid #598d8f;
 }
 
-.import:hover .button:hover {
+.import:hover .button:hover  {
   background-color: #1f1f1f;
+}
+
+::-webkit-file-upload-button{
+  display: none;
 }
 
 ::-webkit-file-upload-button {
@@ -375,3 +379,4 @@ body {
 .success strong {
   color: #2b542c;
 }
+
