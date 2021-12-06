@@ -105,7 +105,7 @@ const renderCalendar = (eventArray) => {
                         dailyEvents += event.getDescription() + "<br>"
                 }
             })
-            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i} today">${i + " " + `<p>${dailyEvents}</p>`}</div>`
+            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i} today date">${i + " " + `<p>${dailyEvents}</p>`}</div>`
             
         }else{
             //loops through the events array
@@ -115,7 +115,7 @@ const renderCalendar = (eventArray) => {
                     dailyEvents += event.getDescription() + "<br>"
                 }
             })
-            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i}">${i + " " + `<p>${dailyEvents}</p>`}</div>`
+            days += `<div class = "${date.getFullYear()} ${months[date.getMonth()]} ${i} date">${i + " " + `<p>${dailyEvents}</p>`}</div>`
         }
     }
 
@@ -152,7 +152,8 @@ const closeModalButtons = document.querySelectorAll("[data-close-button]")
 openModalButtons.forEach(button => {
     button.addEventListener('click', function(e) {
         e = e || window.event
-        let target = e.target
+        let target = e.target.closest('.date')
+        console.log(target)
         let text = target.classList
         const modal = document.querySelector(button.dataset.modalTarget)
         document.getElementById("title").innerHTML = text[1] + " " + text[2] + ", " + text[0]

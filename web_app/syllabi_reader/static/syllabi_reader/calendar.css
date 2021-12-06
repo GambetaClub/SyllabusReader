@@ -131,8 +131,29 @@ body {
   color: aqua;
   padding-left: 0.5rem;
   word-wrap: break-word;
-  pointer-events: none;
+  /* pointer-events: none; */
   overflow-y: auto;
+}
+
+/* scroll bar styling */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #353d3d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .days div:hover:not(.today) {
