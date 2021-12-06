@@ -21,13 +21,15 @@ class ICSConverter:
                 if row["Assignments"] != '-' and row['Assignments'] != '':
                     event = Event()
                     event.add("summary", row["Assignments"])
-                    date = [int(x) for x in re.split(r'-| |\:', row["Date"])]
-                    date = str(datetime(date[0], date[1], date[2]).date()).split('-')
-                    event['dtstart'] = date[0] + date[1] + date[2] + "T000000Z"
+                    date = [int(x) for x in row["Date"].split('/')]
+                    date = datetime.strptime(str(date[2]) + '-' + str(date[0]) + '-' + str(date[1]), '%Y-%m-%d').strftime('%Y%m%d')
+                    event['dtstart'] = date + "T000000Z"
                     self.__calendar.add_component(event)
     
     #uses calendar to create a ICS file
     def exportICS(self):
-        f = open(os.path.join(self.__directory, 'calendar.ics'), 'wb')
+        file_path = os.path.join(self.__directory, 'calendar.ics')
+        f = open(file_path, 'wb')
         f.write(self.__calendar.to_ical())
         f.close()
+        return file_path
